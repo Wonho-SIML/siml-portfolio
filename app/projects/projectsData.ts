@@ -244,4 +244,31 @@ export const projectsData: Project[] = [
       },
     ],
   },
+  {
+    title: "[개인 포트폴리오 사이트] 포트폴리오 웹사이트",
+    description:
+      "개인 포트폴리오 웹사이트. Next.js 를 활용한 모던한 UI/UX와 반응형 디자인을 구현",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Radix UI", "Lucide React"],
+    image: "/placeholder.svg?height=200&width=300",
+    demo: "https://siml-portfolio.vercel.app",
+    github: "https://github.com/Wonho-SIML/siml-portfolio",
+    type: "personal",
+    features: [
+      {
+        id: "portfolio-ux-design",
+        title: "사용자 경험 중심의 인터랙티브 UI/UX 설계",
+        situation:
+          "단순한 정적 포트폴리오가 아닌, 방문자가 인상적으로 기억할 수 있는 인터랙티브한 사용자 경험을 제공해야 했습니다.",
+        task: "스크롤 기반 애니메이션, 인터랙티브 캔버스, 캐러셀 등을 활용하여 몰입감 있는 사용자 경험을 구현해야 했습니다.",
+        action: [
+          "Intersection Observer API 기반 스크롤 애니메이션 시스템 구현",
+          "Canvas API 기반 실시간 파티클 시스템 및 마우스 인터랙션 구현",
+          "반응형 네비게이션 및 모바일 최적화",
+        ],
+        result:
+          "방문자가 직관적이고 인상적으로 포트폴리오를 탐색할 수 있는 인터랙티브한 사용자 경험을 성공적으로 구현했습니다.",
+        gifUrl: "/projects/portfolio-ux.gif",
+      },
+    ],
+  },
 ];
