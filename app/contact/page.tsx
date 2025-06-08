@@ -10,7 +10,7 @@ export default function ContactPage() {
         <AnimatedSection id="contact-info" className="w-full">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Let's Connect
+              Let&apos;s Connect
             </h2>
             <p className="text-xl text-gray-300 mb-12">
               언제든지 편하게 연락주세요!

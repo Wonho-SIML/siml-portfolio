@@ -25,7 +25,7 @@ export default function Navigation() {
             href="/"
             className="text-white font-bold text-xl hover:text-blue-400 transition-colors"
           >
-            SWH's Portfolio
+            SWH&apos;s Portfolio
           </Link>
 
           {/* 데스크탑 메뉴 */}

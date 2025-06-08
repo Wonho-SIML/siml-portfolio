@@ -97,7 +97,8 @@ export default function AboutPage() {
                 delay: 1500,
                 stopOnInteraction: false,
                 stopOnMouseEnter: true,
-              }),
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              }) as any,
             ]}
             className="w-full"
           >
