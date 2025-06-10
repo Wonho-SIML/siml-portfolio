@@ -35,8 +35,8 @@ export default function ProjectModal({
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogContent className="bg-slate-800/95 backdrop-blur-md border-slate-700 text-white sm:max-w-3xl max-h-[90vh] overflow-y-auto p-0 shadow-2xl rounded-lg">
-        <DialogHeader className="p-6 pb-4 sticky top-0 bg-slate-800/80 backdrop-blur-sm z-20 border-b border-slate-700">
-          <DialogTitle className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+        <DialogHeader className="p-3 pb-2 md:p-6 md:pb-4 sticky top-0 bg-slate-800/80 backdrop-blur-sm z-20 border-b border-slate-700">
+          <DialogTitle className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
             {project.title}
           </DialogTitle>
           <DialogDescription className="text-gray-400 mt-1">
@@ -49,7 +49,7 @@ export default function ProjectModal({
               key={feature.id}
               className="space-y-6 p-6 bg-slate-700/30 rounded-lg shadow-lg"
             >
-              <h3 className="text-2xl font-semibold text-blue-300 flex items-center">
+              <h3 className="text-xl md:text-2xl font-semibold text-blue-300 flex items-center">
                 <ChevronRight className="h-6 w-6 mr-2 text-blue-400" />
                 {feature.title}
               </h3>
@@ -109,7 +109,7 @@ export default function ProjectModal({
             </div>
           ))}
         </div>
-        <DialogFooter className="p-6 pt-4 sticky bottom-0 bg-slate-800/80 backdrop-blur-sm z-20 border-t border-slate-700">
+        <DialogFooter className="p-3 pt-2 md:p-6 md:pt-4 sticky bottom-0 bg-slate-800/80 backdrop-blur-sm z-20 border-t border-slate-700">
           <div className="flex w-full justify-between items-center">
             <div>
               {project.github && (
