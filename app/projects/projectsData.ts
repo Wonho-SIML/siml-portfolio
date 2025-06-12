@@ -37,7 +37,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "안정적인 브릿지 구현으로 크로스플랫폼 사용자 경험 일관성을 확보하였습니다.",
-        gifUrl: "/projects/neostudio2-bridge.gif",
+        gifUrl: "/images/neostudio2-bridge.gif",
       },
       {
         id: "neostudio2-data-migration",
@@ -53,7 +53,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "자체 서버 기반 방식으로 안정적인 마이그레이션을 완료하여, 마이그레이션 관련 CS 건을 감소시켰습니다.",
-        gifUrl: "/projects/neostudio2-migration.gif",
+        gifUrl: "/images/neostudio2-migration.gif",
       },
       {
         id: "neostudio2-data-sync",
@@ -67,7 +67,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "데이터 동기화 안정성을 대폭 향상시켜 사용자 데이터 무결성을 확보하고, 동기화 관련 CS 건을 감소시켰습니다.",
-        gifUrl: "/projects/neostudio2-sync.gif",
+        gifUrl: "/images/neostudio2-sync.gif",
       },
       {
         id: "neostudio2-media-autoplay",
@@ -82,7 +82,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "웹/앱 양단에서 안정적인 미디어 자동 재생 기능을 성공적으로 구현하여 신규 비즈니스 모델 도입 기반을 마련하고, 미디어 로딩 속도를 60% 개선했습니다.",
-        gifUrl: "/projects/neostudio2-media.gif",
+        gifUrl: "/images/neostudio2-media.gif",
       },
       {
         id: "neostudio2-canvas-text-editor",
@@ -98,7 +98,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "Canvas, Web Worker, PDF 환경에서 일관된 서식 있는 텍스트 렌더링을 구현하여 사용자 편집 경험을 크게 향상시켰습니다.",
-        gifUrl: "/projects/neostudio2-canvas.gif",
+        gifUrl: "/images/neostudio2-canvas.gif",
       },
     ],
   },
@@ -132,7 +132,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "실시간 드로잉 기능으로 사용자 참여도 및 웹 버전 활용률이 향상되어 플랫폼 가치를 확장했습니다.",
-        gifUrl: "/projects/neostudio-web-drawing.gif",
+        gifUrl: "/images/neostudio-web-drawing.gif",
       },
       {
         id: "neostudio-web-websocket-optimization",
@@ -146,7 +146,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "메시지 순서 보장으로 실시간 드로잉 동기화 정확도를 향상시켰습니다.",
-        gifUrl: "/projects/neostudio-web-websocket.gif",
+        gifUrl: "/images/neostudio-web-websocket.gif",
       },
       {
         id: "neostudio-web-memory-optimization",
@@ -160,7 +160,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "메모리 최적화로 대량 썸네일 로딩 시 메모리 사용량을 절감하여 Out of Memory 에러를 완전히 해결하였습니다.",
-        gifUrl: "/projects/neostudio-web-memory.gif",
+        gifUrl: "/images/neostudio-web-memory.gif",
       },
       {
         id: "neostudio-web-server-migration",
@@ -174,7 +174,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "새로운 서버 API와의 안정적인 연동을 구현하여 기존 사용자 경험을 유지했습니다.",
-        gifUrl: "/projects/neostudio-web-migration.gif",
+        gifUrl: "/images/neostudio-web-migration.gif",
       },
     ],
   },
