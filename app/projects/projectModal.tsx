@@ -50,7 +50,7 @@ export default function ProjectModal({
             </DialogDescription>
           </DialogHeader>
           <div className="px-6 py-4 space-y-10">
-            {project.features.map((feature) => (
+            {project.features.map((feature, index) => (
               <div
                 key={feature.id}
                 className="space-y-6 p-6 bg-slate-700/30 rounded-lg shadow-lg"
@@ -71,6 +71,9 @@ export default function ProjectModal({
                       onClick={() =>
                         feature.gifUrl && setSelectedImage(feature.gifUrl)
                       }
+                      priority={index === 0}
+                      placeholder="blur"
+                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNsqgcAAYkBAI5i4HUAAAAASUVORK5CYII="
                     />
                   </div>
                 )}
