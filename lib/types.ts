@@ -5,7 +5,7 @@ export interface StarFeature {
   task: string;
   action: string[];
   result: string;
-  gifUrl?: string;
+  videoUrl?: string;
 }
 
 export interface Project {

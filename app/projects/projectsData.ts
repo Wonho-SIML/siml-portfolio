@@ -18,7 +18,7 @@ export const projectsData: Project[] = [
       "Web Worker",
       "BLE",
     ],
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/neostudio2.jpg",
     demo: "https://neostudio2.io",
     type: "company",
     features: [
@@ -37,7 +37,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "안정적인 브릿지 구현으로 크로스플랫폼 사용자 경험 일관성을 확보하였습니다.",
-        gifUrl: "/images/neostudio2-bridge.gif",
+        videoUrl: "/videos/neostudio2-bridge.mp4",
       },
       {
         id: "neostudio2-data-migration",
@@ -53,7 +53,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "자체 서버 기반 방식으로 안정적인 마이그레이션을 완료하여, 마이그레이션 관련 CS 건을 감소시켰습니다.",
-        gifUrl: "/images/neostudio2-migration.gif",
+        videoUrl: "/videos/neostudio2-migration.mp4",
       },
       {
         id: "neostudio2-data-sync",
@@ -67,7 +67,6 @@ export const projectsData: Project[] = [
         ],
         result:
           "데이터 동기화 안정성을 대폭 향상시켜 사용자 데이터 무결성을 확보하고, 동기화 관련 CS 건을 감소시켰습니다.",
-        gifUrl: "/images/neostudio2-sync.gif",
       },
       {
         id: "neostudio2-media-autoplay",
@@ -82,7 +81,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "웹/앱 양단에서 안정적인 미디어 자동 재생 기능을 성공적으로 구현하여 신규 비즈니스 모델 도입 기반을 마련하고, 미디어 로딩 속도를 60% 개선했습니다.",
-        gifUrl: "/images/neostudio2-media.gif",
+        videoUrl: "/videos/neostudio2-media.mp4",
       },
       {
         id: "neostudio2-canvas-text-editor",
@@ -98,7 +97,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "Canvas, Web Worker, PDF 환경에서 일관된 서식 있는 텍스트 렌더링을 구현하여 사용자 편집 경험을 크게 향상시켰습니다.",
-        gifUrl: "/images/neostudio2-canvas.gif",
+        videoUrl: "/videos/neostudio2-canvas.mp4",
       },
     ],
   },
@@ -117,7 +116,7 @@ export const projectsData: Project[] = [
       "BLE",
       "Firebase",
     ],
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/webneo.jpg",
     type: "company",
     features: [
       {
@@ -132,7 +131,6 @@ export const projectsData: Project[] = [
         ],
         result:
           "실시간 드로잉 기능으로 사용자 참여도 및 웹 버전 활용률이 향상되어 플랫폼 가치를 확장했습니다.",
-        gifUrl: "/images/neostudio-web-drawing.gif",
       },
       {
         id: "neostudio-web-websocket-optimization",
@@ -146,7 +144,6 @@ export const projectsData: Project[] = [
         ],
         result:
           "메시지 순서 보장으로 실시간 드로잉 동기화 정확도를 향상시켰습니다.",
-        gifUrl: "/images/neostudio-web-websocket.gif",
       },
       {
         id: "neostudio-web-memory-optimization",
@@ -160,7 +157,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "메모리 최적화로 대량 썸네일 로딩 시 메모리 사용량을 절감하여 Out of Memory 에러를 완전히 해결하였습니다.",
-        gifUrl: "/images/neostudio-web-memory.gif",
+        videoUrl: "/videos/neostudio-web-memory.mp4",
       },
       {
         id: "neostudio-web-server-migration",
@@ -174,7 +171,6 @@ export const projectsData: Project[] = [
         ],
         result:
           "새로운 서버 API와의 안정적인 연동을 구현하여 기존 사용자 경험을 유지했습니다.",
-        gifUrl: "/images/neostudio-web-migration.gif",
       },
     ],
   },
@@ -183,7 +179,7 @@ export const projectsData: Project[] = [
     description:
       "JavaScript 기반 네오스마트펜을 활용하기 위한 SDK의 유지보수 및 신규 프로토콜 추가 프로젝트. 복잡한 SDK 사용법으로 인한 고객사 지원 문의 증가 문제를 해결하고, 개발자 경험을 개선",
     tech: ["JavaScript", "Canvas API", "Firebase", "BLE"],
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/sdk.jpg",
     type: "company",
     features: [
       {
@@ -198,7 +194,6 @@ export const projectsData: Project[] = [
         ],
         result:
           "직관적인 샘플 페이지와 가이드 제공으로 고객사 개발 시간을 단축시키고, 기술 지원 문의를 감소시켰습니다.",
-        gifUrl: "/projects/pen-sdk-samples.gif",
       },
     ],
   },
@@ -207,7 +202,7 @@ export const projectsData: Project[] = [
     description:
       "공공API와 요일제 시스템을 활용한 좌석버스 잔여석 통계 서비스. 출퇴근 시간대 좌석 여유도를 미리 확인할 수 있는 데이터 기반 솔루션",
     tech: ["Next.js", "TypeScript", "TailwindCSS", "Vercel", "Supabase"],
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/bus.png",
     demo: "https://busseatstracker.vercel.app/",
     github: "https://github.com/SIML-Seo/bus-seat-tracker",
     type: "personal",
@@ -226,7 +221,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "API 호출 제한 내에서 효율적인 데이터 수집이 가능해져 출퇴근 시간대 좌석버스 이용 패턴 분석 데이터를 성공적으로 구축했습니다.",
-        gifUrl: "/projects/bus-tracker-system.gif",
+        videoUrl: "/projects/bus-tracker-system.mp4",
       },
       {
         id: "bus-tracker-data-analysis",
@@ -240,7 +235,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "사용자가 원하는 정류장과 시간대에 좌석 여유도를 미리 확인할 수 있게 되어 출퇴근 계획 수립에 실질적인 도움을 제공했습니다.",
-        gifUrl: "/projects/bus-tracker-analysis.gif",
+        videoUrl: "/projects/bus-tracker-analysis.mp4",
       },
     ],
   },
@@ -249,7 +244,7 @@ export const projectsData: Project[] = [
     description:
       "개인 포트폴리오 웹사이트. Next.js 를 활용한 모던한 UI/UX와 반응형 디자인을 구현",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Radix UI", "Lucide React"],
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/portfolio.jpg",
     demo: "https://siml-portfolio.vercel.app",
     github: "https://github.com/Wonho-SIML/siml-portfolio",
     type: "personal",
@@ -267,7 +262,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "방문자가 직관적이고 인상적으로 포트폴리오를 탐색할 수 있는 인터랙티브한 사용자 경험을 성공적으로 구현했습니다.",
-        gifUrl: "/projects/portfolio-ux.gif",
+        videoUrl: "/projects/portfolio-ux.mp4",
       },
     ],
   },

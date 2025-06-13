@@ -18,7 +18,6 @@ import {
   ChevronRight,
   X,
 } from "lucide-react";
-import Image from "next/image";
 import { Project } from "@/lib/types";
 import { useState } from "react";
 
@@ -33,7 +32,7 @@ export default function ProjectModal({
   isOpen,
   onOpenChange,
 }: ProjectModalProps) {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   if (!project) return null;
 
@@ -50,7 +49,7 @@ export default function ProjectModal({
             </DialogDescription>
           </DialogHeader>
           <div className="px-6 py-4 space-y-10">
-            {project.features.map((feature, index) => (
+            {project.features.map((feature) => (
               <div
                 key={feature.id}
                 className="space-y-6 p-6 bg-slate-700/30 rounded-lg shadow-lg"
@@ -59,21 +58,21 @@ export default function ProjectModal({
                   <ChevronRight className="h-6 w-6 mr-2 text-blue-400" />
                   {feature.title}
                 </h3>
-                {feature.gifUrl && (
-                  <div className="my-4 rounded-md overflow-hidden border border-slate-600 max-h-80">
-                    <Image
-                      src={feature.gifUrl || "/placeholder.svg"}
-                      alt={`${feature.title} GIF`}
-                      width={0}
-                      height={0}
-                      sizes="100vw"
+                {feature.videoUrl && (
+                  <div
+                    className="my-4 rounded-md overflow-hidden border border-slate-600 max-h-80"
+                    onClick={() =>
+                      feature.videoUrl && setSelectedVideo(feature.videoUrl)
+                    }
+                  >
+                    <video
+                      src={feature.videoUrl}
                       className="w-full h-auto max-h-full object-contain cursor-pointer hover:opacity-80 transition-opacity"
-                      onClick={() =>
-                        feature.gifUrl && setSelectedImage(feature.gifUrl)
-                      }
-                      priority={index === 0}
-                      placeholder="blur"
-                      blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNsqgcAAYkBAI5i4HUAAAAASUVORK5CYII="
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="metadata"
                     />
                   </div>
                 )}
@@ -148,35 +147,36 @@ export default function ProjectModal({
       </Dialog>
 
       <Dialog
-        open={!!selectedImage}
-        onOpenChange={(isOpen) => !isOpen && setSelectedImage(null)}
+        open={!!selectedVideo}
+        onOpenChange={(isOpen) => !isOpen && setSelectedVideo(null)}
       >
-        {selectedImage && (
+        {selectedVideo && (
           <DialogPrimitive.Portal>
             <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/90 data-[state=open]:animate-in data-[state=open]:fade-in-0" />
             <DialogPrimitive.Content
               className="fixed inset-0 z-50 flex items-center justify-center p-4 outline-none data-[state=open]:animate-in data-[state=open]:fade-in-0"
-              onClick={() => setSelectedImage(null)}
+              onClick={() => setSelectedVideo(null)}
             >
               <DialogPrimitive.Title className="sr-only">
-                확대된 이미지
+                확대된 비디오
               </DialogPrimitive.Title>
               <div
                 className="relative w-auto h-auto max-w-[95vw] max-h-[95vh]"
-                onClick={() => setSelectedImage(null)}
+                onClick={() => setSelectedVideo(null)}
               >
                 <DialogClose asChild>
                   <button className="absolute -top-2 -right-2 z-10 bg-black/50 rounded-full p-2 text-white hover:text-gray-300 hover:bg-black/70 transition-colors">
                     <X size={24} />
                   </button>
                 </DialogClose>
-                <Image
-                  src={selectedImage}
-                  alt="확대된 이미지"
-                  width={0}
-                  height={0}
-                  sizes="95vw"
+                <video
+                  src={selectedVideo}
                   className="w-auto h-auto max-w-[95vw] max-h-[95vh] object-contain"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  controls
                 />
               </div>
             </DialogPrimitive.Content>
