@@ -221,7 +221,6 @@ export const projectsData: Project[] = [
         ],
         result:
           "API 호출 제한 내에서 효율적인 데이터 수집이 가능해져 출퇴근 시간대 좌석버스 이용 패턴 분석 데이터를 성공적으로 구축했습니다.",
-        videoUrl: "/projects/bus-tracker-system.mp4",
       },
       {
         id: "bus-tracker-data-analysis",
@@ -235,7 +234,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "사용자가 원하는 정류장과 시간대에 좌석 여유도를 미리 확인할 수 있게 되어 출퇴근 계획 수립에 실질적인 도움을 제공했습니다.",
-        videoUrl: "/projects/bus-tracker-analysis.mp4",
+        videoUrl: "/videos/bus-tracker.mp4",
       },
     ],
   },
@@ -262,7 +261,7 @@ export const projectsData: Project[] = [
         ],
         result:
           "방문자가 직관적이고 인상적으로 포트폴리오를 탐색할 수 있는 인터랙티브한 사용자 경험을 성공적으로 구현했습니다.",
-        videoUrl: "/projects/portfolio-ux.mp4",
+        videoUrl: "/videos/portfolio-ux.mp4",
       },
     ],
   },
