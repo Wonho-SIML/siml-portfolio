@@ -2,6 +2,46 @@ import { Project } from "@/lib/types";
 
 export const projectsData: Project[] = [
   {
+    title: "[웹캐스터 (회사 플랫폼 활용을 위한 편집 툴)]",
+    description:
+      "레거시 QT/C++ 기반 에디터를 React & MAUI 하이브리드 구조로 전환한 프로젝트. IndexedDB 기반 스토리지, Web Worker/wasm 연동, MAUI 프로토콜을 포함한 하이브리드 파일 시스템 구현으로 플랫폼 간 일관된 사용자 경험 확보",
+    tech: ["React", "TypeScript", "Jotai", "MAUI", "C#"],
+    image: "/images/webcaster.jpg",
+    type: "company",
+    features: [
+      {
+        id: "webcaster-pdf-export",
+        title: "PDF 편집 및 내보내기 파이프라인 전면 개편",
+        situation:
+          "수 GB 규모의 대용량 프로젝트를 PDF로 내보낼 때 메모리 부족(Out of Memory) 오류가 빈번하게 발생하여 사용자가 작업 결과물을 저장할 수 없는 치명적인 문제가 있었습니다.",
+        task: "대용량 프로젝트에서도 안정적으로 PDF 내보내기가 가능하도록 메모리 효율적인 파이프라인을 설계하고 구현해야 했습니다.",
+        action: [
+          "페이지를 수 MB 단위 청크로 분할하여 처리하는 시스템 구현",
+          "웹에서 청크 단위로 처리 후 네이티브에서 병합·저장하는 하이브리드 아키텍처 설계",
+          "메모리 사용량을 모니터링하며 청크 크기를 동적으로 조정하는 로직 구현",
+        ],
+        result:
+          "수 GB 규모의 대용량 프로젝트에서도 Out of Memory 오류 없이 안정적으로 PDF 내보내기가 가능해졌습니다.",
+        // videoUrl: "/videos/webcaster-pdf.mp4",
+      },
+      {
+        id: "webcaster-legacy-migration",
+        title: "레거시 QT/C++ 시스템 분석을 통한 프로젝트 기능 정비",
+        situation:
+          "레거시 QT/C++ 시스템에서 정상 동작하던 프로젝트 기능들이 새로운 하이브리드 구조에서 제대로 동작하지 않는 호환성 문제가 발생했습니다.",
+        task: "레거시 시스템의 동작 방식을 정확히 파악하고, 새로운 시스템에서도 동일한 결과를 보장할 수 있도록 기능을 정비해야 했습니다.",
+        action: [
+          "레거시 QT/C++ 소스코드 분석을 통한 프로젝트 빌드 로직 파악",
+          "XML 빌드 오류 및 프로젝트 구조 차이로 인한 이슈 수정",
+          "레거시 시스템과 동일한 기준으로 내보내기가 가능하도록 검증 로직 구현",
+        ],
+        result:
+          "레거시 시스템과 완전히 호환되는 프로젝트 내보내기 기능을 구현하여 기존 사용자 워크플로우를 유지했습니다.",
+        // videoUrl: "/videos/webcaster-legacy.mp4",
+      },
+    ],
+  },
+  {
     title: "[네오스튜디오 2 (MAUI 기반 크로스플랫폼 하이브리드 앱)]",
     description:
       "기존 네이티브 앱의 MAUI & React 기반 하이브리드 앱 전환 프로젝트. 스마트펜 기반 필기 앱으로, 웹뷰와 네이티브 간 안정적인 연동, 데이터 동기화, Canvas 렌더링 등 다양한 기술적 과제 해결",
