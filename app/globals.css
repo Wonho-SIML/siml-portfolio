@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent layout shift when modal opens/closes (scrollbar disappears) */
+html {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+/* Override react-remove-scroll-bar's compensation (already handled by scrollbar-gutter) */
+html body[data-scroll-locked] {
+  margin-right: 0 !important;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
