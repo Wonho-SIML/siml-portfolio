@@ -4,11 +4,11 @@ import { useEffect, useRef } from "react";
 import type { Particle } from "@/lib/types";
 
 // 캔버스 설정 값들
-const NUMBER_OF_PARTICLES = 70;
-const CONNECT_DISTANCE = 120;
+const NUMBER_OF_PARTICLES = 40;
+const CONNECT_DISTANCE = 150;
 const MOUSE_INTERACTION_DISTANCE = 100;
-const PARTICLE_BASE_HUE = 180; // 파티클 기본 색상 (Hue)
-const CONNECTION_LINE_COLOR = "rgba(100, 200, 200, 0.3)"; // 연결선 기본 색상
+const PARTICLE_BASE_HUE = 200; // 파티클 기본 색상 (Hue) - 차분한 블루
+const CONNECTION_LINE_COLOR = "rgba(100, 120, 140, 0.15)"; // 연결선 - 은은한 블루그레이
 
 export default function InteractiveCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -38,8 +38,8 @@ export default function InteractiveCanvas() {
         const y = Math.random() * (canvas.height - size * 2) + size;
         const speedX = (Math.random() - 0.5) * 0.8;
         const speedY = (Math.random() - 0.5) * 0.8;
-        const saturation = Math.random() * 30 + 70;
-        const lightness = Math.random() * 30 + 50;
+        const saturation = Math.random() * 15 + 15;
+        const lightness = Math.random() * 15 + 30;
         const color = `hsl(${PARTICLE_BASE_HUE}, ${saturation}%, ${lightness}%)`;
         particlesArray.push({ x, y, size, speedX, speedY, color });
       }

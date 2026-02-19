@@ -14,13 +14,13 @@ export default function VideoPlayer({
   onVideoClick,
 }: VideoPlayerProps) {
   return (
-    <div className="my-4 rounded-md overflow-hidden border border-slate-600 max-h-80 relative">
+    <div className="my-4 rounded-md overflow-hidden border border-neutral-700 max-h-80 relative">
       {/* 에러 상태 */}
       {hasError && (
-        <div className="absolute inset-0 bg-slate-700/70 flex items-center justify-center z-10">
+        <div className="absolute inset-0 bg-neutral-800/70 flex items-center justify-center z-10">
           <div className="flex flex-col items-center space-y-2">
             <X className="h-8 w-8 text-red-400" />
-            <p className="text-sm text-gray-300">비디오를 불러올 수 없습니다</p>
+            <p className="text-sm text-neutral-400">비디오를 불러올 수 없습니다</p>
           </div>
         </div>
       )}

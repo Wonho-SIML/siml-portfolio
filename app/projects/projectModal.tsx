@@ -53,12 +53,12 @@ export default function ProjectModal({
   return (
     <>
       <Dialog open={isOpen} onOpenChange={onOpenChange}>
-        <DialogContent className="bg-slate-800/95 backdrop-blur-md border-slate-700 text-white sm:max-w-3xl max-h-[90vh] overflow-y-auto p-0 shadow-2xl rounded-lg">
-          <DialogHeader className="p-3 pb-2 md:p-6 md:pb-4 sticky top-0 bg-slate-800/80 backdrop-blur-sm z-20 border-b border-slate-700">
-            <DialogTitle className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+        <DialogContent className="bg-neutral-900/95 backdrop-blur-md border-neutral-800 text-white sm:max-w-3xl max-h-[90vh] overflow-y-auto p-0 shadow-2xl rounded-lg">
+          <DialogHeader className="p-3 pb-2 md:p-6 md:pb-4 sticky top-0 bg-neutral-900/90 backdrop-blur-sm z-20 border-b border-neutral-800">
+            <DialogTitle className="text-2xl md:text-3xl font-bold text-white">
               {project.title}
             </DialogTitle>
-            <DialogDescription className="text-gray-400 mt-1">
+            <DialogDescription className="text-neutral-400 mt-1">
               {project.description}
             </DialogDescription>
           </DialogHeader>
@@ -75,13 +75,13 @@ export default function ProjectModal({
             ))}
           </div>
 
-          <DialogFooter className="p-3 pt-2 md:p-6 md:pt-4 sticky bottom-0 bg-slate-800/80 backdrop-blur-sm z-20 border-t border-slate-700">
+          <DialogFooter className="p-3 pt-2 md:p-6 md:pt-4 sticky bottom-0 bg-neutral-900/90 backdrop-blur-sm z-20 border-t border-neutral-800">
             <div className="flex w-full justify-between items-center">
               <div>
                 {project.github && (
                   <Button
                     variant="outline"
-                    className="border-slate-600 hover:bg-slate-700 text-gray-300 hover:text-white"
+                    className="border-neutral-700 hover:bg-neutral-800 text-neutral-400 hover:text-white"
                     onClick={() =>
                       project.github && window.open(project.github, "_blank")
                     }
@@ -91,7 +91,7 @@ export default function ProjectModal({
                 )}
               </div>
               <DialogClose asChild>
-                <Button type="button" className="bg-blue-600 hover:bg-blue-700">
+                <Button type="button" className="bg-sky-500 hover:bg-sky-600 text-white">
                   닫기
                 </Button>
               </DialogClose>

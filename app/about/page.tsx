@@ -27,7 +27,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-[7fr_3fr] gap-12 items-center">
             <AnimatedSection
               animationType="fadeInLeft"
-              className="text-gray-300 space-y-6"
+              className="text-neutral-400 space-y-6"
             >
               <p className="text-lg leading-relaxed">
                 안녕하세요! {calculateExperience()} 이상 React 기반 프론트엔드
@@ -44,11 +44,11 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 gap-4 mt-8">
                 {[
                   {
-                    icon: <Code className="text-blue-400" size={20} />,
+                    icon: <Code className="text-sky-400" size={20} />,
                     text: "React 생태계 전문", // react, typescript, mobx, ..
                   },
                   {
-                    icon: <Palette className="text-purple-400" size={20} />,
+                    icon: <Palette className="text-amber-400" size={20} />,
                     text: "고급 Canvas 활용", // canvas api
                   },
                   {
@@ -56,7 +56,7 @@ export default function AboutPage() {
                     text: "성능 최적화 전문", // 메모리 관리, web worker 활용
                   },
                   {
-                    icon: <ExternalLink className="text-green-400" size={20} />,
+                    icon: <ExternalLink className="text-emerald-400" size={20} />,
                     text: "웹 표준 기술 숙련", // websocket, canvas, ble
                   },
                 ].map((item, idx) => (
@@ -64,10 +64,10 @@ export default function AboutPage() {
                     key={item.text}
                     animationType="fadeInUp"
                     delay={`${idx * 100}ms`}
-                    className="flex items-center space-x-2 p-3 bg-white/5 rounded-lg"
+                    className="flex items-center space-x-2 p-3 bg-neutral-800/50 rounded-lg border border-neutral-800"
                   >
                     {item.icon}
-                    <span>{item.text}</span>
+                    <span className="text-neutral-300">{item.text}</span>
                   </AnimatedSection>
                 ))}
               </div>
@@ -115,14 +115,14 @@ export default function AboutPage() {
 
       <AnimatedSection
         id="experience"
-        className="bg-black/20 rounded-lg my-10 py-10"
+        className="bg-neutral-900/50 border border-neutral-800 rounded-lg my-10 py-10"
       >
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-bold text-center text-white mb-20">
             My Journey
           </h2>
           <div className="relative">
-            <div className="hidden sm:block absolute w-0.5 h-full bg-blue-500/30 left-1/2 transform -translate-x-1/2 top-0"></div>
+            <div className="hidden sm:block absolute w-0.5 h-full bg-sky-500/20 left-1/2 transform -translate-x-1/2 top-0"></div>
             {experiences.map((exp, index) => (
               <div
                 key={index}
@@ -133,7 +133,7 @@ export default function AboutPage() {
               >
                 <div className="hidden sm:flex sm:w-1/2"></div>
                 <div className="hidden sm:flex relative px-4 w-auto justify-center items-center">
-                  <div className="h-4 w-4 bg-blue-500 rounded-full absolute z-10 border-4 border-slate-900"></div>
+                  <div className="h-4 w-4 bg-sky-500 rounded-full absolute z-10 border-4 border-neutral-950"></div>
                 </div>
                 <div
                   className={cn(

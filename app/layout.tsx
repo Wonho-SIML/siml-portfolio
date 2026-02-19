@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={cn(
           notoSansKR.className,
-          "bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-gray-100 min-h-screen flex flex-col"
+          "bg-neutral-950 text-gray-100 min-h-screen flex flex-col"
         )}
       >
         <Navigation />

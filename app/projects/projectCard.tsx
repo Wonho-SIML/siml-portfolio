@@ -29,7 +29,7 @@ export default function ProjectCard({
       animationType="fadeInUp"
       delay={`${index * 100}ms`}
     >
-      <Card className="bg-white/10 border-white/20 backdrop-blur-sm hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex flex-col h-full">
+      <Card className="bg-neutral-900/80 border-neutral-800 hover:bg-neutral-800/80 transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex flex-col h-full">
         <CardHeader className="p-0">
           <Image
             src={project.image || "/placeholder.svg"}
@@ -42,7 +42,7 @@ export default function ProjectCard({
             <CardTitle className="text-white text-xl">
               {project.title}
             </CardTitle>
-            <CardDescription className="text-gray-300 mt-2 h-20 overflow-hidden text-ellipsis">
+            <CardDescription className="text-neutral-400 mt-2 h-20 overflow-hidden text-ellipsis">
               {project.description}
             </CardDescription>
           </div>
@@ -53,7 +53,7 @@ export default function ProjectCard({
               <Badge
                 key={techIndex}
                 variant="secondary"
-                className="bg-blue-700/30 text-blue-300 border border-blue-500/50"
+                className="bg-sky-500/10 text-sky-300 border border-sky-500/30"
               >
                 {tech}
               </Badge>
@@ -63,7 +63,7 @@ export default function ProjectCard({
             <Button
               size="sm"
               variant="outline"
-              className="border-white/50 text-white hover:bg-white hover:text-black flex-1"
+              className="border-neutral-700 text-neutral-300 hover:bg-neutral-700 hover:text-white flex-1"
               onClick={() => onOpenModal(project)}
             >
               <Sparkles className="mr-2 h-4 w-4" />
@@ -72,7 +72,7 @@ export default function ProjectCard({
             {project.demo && (
               <Button
                 size="sm"
-                className="bg-blue-600 hover:bg-blue-700 flex-1"
+                className="bg-sky-500 hover:bg-sky-600 text-white flex-1"
                 onClick={() =>
                   project.demo && window.open(project.demo, "_blank")
                 }

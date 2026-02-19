@@ -6,19 +6,19 @@ import AnimatedSection from "@/components/animated-section";
 export default function ContactPage() {
   return (
     <div className="container mx-auto px-4">
-      <div className="bg-black/20 rounded-lg my-10 py-10 flex items-center justify-center min-h-[calc(100vh-10rem)]">
+      <div className="bg-neutral-900/50 border border-neutral-800 rounded-lg my-10 py-10 flex items-center justify-center min-h-[calc(100vh-10rem)]">
         <AnimatedSection id="contact-info" className="w-full">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
               Let&apos;s Connect
             </h2>
-            <p className="text-xl text-gray-300 mb-12">
+            <p className="text-xl text-neutral-400 mb-12">
               언제든지 편하게 연락주세요!
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
               <Button
                 size="lg"
-                className="bg-blue-600 hover:bg-blue-700 w-full sm:w-auto"
+                className="bg-sky-500 hover:bg-sky-600 text-white w-full sm:w-auto"
                 asChild
               >
                 <a href="mailto:swh1182@gmail.com">
@@ -30,7 +30,7 @@ export default function ContactPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/50 text-white hover:bg-white hover:text-black shadow-md"
+                  className="border-neutral-700 text-neutral-300 hover:bg-neutral-800 hover:text-white shadow-md"
                   asChild
                 >
                   <a
@@ -45,7 +45,7 @@ export default function ContactPage() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/50 text-white hover:bg-white hover:text-black shadow-md"
+                  className="border-neutral-700 text-neutral-300 hover:bg-neutral-800 hover:text-white shadow-md"
                   asChild
                 >
                   <a
