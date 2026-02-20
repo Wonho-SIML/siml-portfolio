@@ -25,7 +25,7 @@ const ExperienceItem: React.FC<{
       <div className="absolute left-[7px] top-5 bottom-0 w-0.5 bg-sky-500/30"></div>
       <div className="mb-1 flex items-center">
         <Building2 className="mr-2 h-5 w-5 text-sky-400" />
-        <h3 className="text-xl font-semibold text-sky-400 mr-2">
+        <h3 className="font-display text-xl font-semibold text-sky-400 mr-2">
           {item.company}
         </h3>
         <span className="text-neutral-600 mr-2">|</span>

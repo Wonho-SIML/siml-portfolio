@@ -9,7 +9,7 @@ export default function ContactPage() {
       <div className="bg-neutral-900/50 border border-neutral-800 rounded-lg my-10 py-10 flex items-center justify-center min-h-[calc(100vh-10rem)]">
         <AnimatedSection id="contact-info" className="w-full">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold text-white mb-8">
+            <h2 className="font-display text-4xl font-bold text-white mb-8">
               Let&apos;s Connect
             </h2>
             <p className="text-xl text-neutral-400 mb-12">

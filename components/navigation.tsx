@@ -23,7 +23,7 @@ export default function Navigation() {
         <div className="flex justify-between items-center py-4">
           <Link
             href="/"
-            className="text-white font-bold text-xl hover:text-sky-400 transition-colors"
+            className="font-display text-white font-bold text-xl hover:text-sky-400 transition-colors"
           >
             SWH&apos;s Portfolio
           </Link>
@@ -35,7 +35,7 @@ export default function Navigation() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "text-neutral-400 hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium",
+                  "link-underline text-neutral-400 hover:text-sky-400 transition-colors px-3 py-2 rounded-md text-sm font-medium",
                   pathname === item.href ? "bg-neutral-800 text-sky-400" : ""
                 )}
               >

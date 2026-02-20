@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import type React from "react";
 import type { Metadata } from "next";
-import { Noto_Sans_KR } from "next/font/google";
+import { Noto_Sans_KR, Outfit } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/navigation";
 import Footer from "@/components/footer";
@@ -9,6 +9,13 @@ import Footer from "@/components/footer";
 const notoSansKR = Noto_Sans_KR({
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "700", "900"],
+  variable: "--font-body",
+  preload: true,
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-display",
   preload: true,
 });
 
@@ -28,8 +35,9 @@ export default function RootLayout({
     <html lang="ko" className="dark">
       <body
         className={cn(
-          notoSansKR.className,
-          "bg-neutral-950 text-gray-100 min-h-screen flex flex-col"
+          notoSansKR.variable,
+          outfit.variable,
+          "font-body bg-neutral-950 text-gray-100 min-h-screen flex flex-col"
         )}
       >
         <Navigation />

@@ -12,7 +12,7 @@ const SkillCard: React.FC<{ skill: Skill }> = ({ skill }) => {
     <TooltipProvider delayDuration={100}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <div className="group relative flex flex-col items-center justify-center w-32 h-32 sm:w-36 sm:h-36 p-4 bg-neutral-900/50 rounded-lg overflow-hidden cursor-pointer border border-neutral-800 hover:border-sky-500/50 transition-colors duration-300">
+          <div className="group relative flex flex-col items-center justify-center w-32 h-32 sm:w-36 sm:h-36 p-4 bg-neutral-900/50 rounded-lg overflow-hidden cursor-pointer border border-neutral-800 hover:border-sky-500/50 hover:scale-[1.03] transition-all duration-300">
             <div className="absolute inset-0 rounded-lg p-px overflow-hidden">
               <div className="absolute inset-0 w-full h-full bg-sky-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="absolute inset-0.5 bg-neutral-900/90 rounded-[7px]"></div>

@@ -68,24 +68,19 @@ export default function Portfolio() {
                 {/* Label */}
                 <div className="flex items-center gap-3">
                   <div className="h-px w-8 bg-sky-400" />
-                  <span className="text-sky-400 text-sm font-medium tracking-widest uppercase">
+                  <span className="font-display text-sky-400 text-sm font-medium tracking-widest uppercase">
                     Frontend Developer
                   </span>
                 </div>
 
                 {/* Name */}
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight">
+                <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight">
                   서원호
                 </h1>
 
                 {/* One-liner */}
-                <p className="text-lg md:text-xl text-neutral-400 max-w-2xl leading-relaxed">
-                  {calculateExperience()} 이상 React 기반 프론트엔드 개발 경력.
-                  <br className="hidden sm:block" />
-                  MAUI와 React를 활용한 크로스플랫폼 하이브리드 앱 개발로
-                  <br className="hidden sm:block" />
-                  다양한 환경에서의 기술 통합 및 문제 해결 능력을 보유하고
-                  있습니다.
+                <p className="text-xl md:text-2xl text-neutral-300 max-w-2xl">
+                  웹과 하드웨어의 경계를 넘나드는 개발자
                 </p>
 
                 {/* Tech badges */}
@@ -94,7 +89,7 @@ export default function Portfolio() {
                     <Badge
                       key={tech}
                       variant="outline"
-                      className="border-neutral-700 text-neutral-300 bg-neutral-900/50 hover:border-sky-400/50 hover:text-sky-300 transition-colors px-3 py-1 text-sm"
+                      className="border-neutral-700 text-neutral-300 bg-neutral-900/50 hover:border-sky-400/50 hover:text-sky-300 hover:scale-105 hover:shadow-lg hover:shadow-sky-400/20 transition-all duration-200 px-3 py-1 text-sm"
                     >
                       {tech}
                     </Badge>
@@ -138,13 +133,13 @@ export default function Portfolio() {
                     key={item.label}
                     animationType="fadeInUp"
                     delay={`${idx * 100}ms`}
-                    className="p-5 rounded-xl bg-neutral-900/80 border border-neutral-800 hover:border-neutral-700 transition-colors"
+                    className="p-5 rounded-xl bg-neutral-900/80 border border-neutral-800 card-hover-glow transition-all duration-300"
                   >
                     <div className="text-sky-400 mb-3">{item.icon}</div>
                     <p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">
                       {item.label}
                     </p>
-                    <p className="text-lg font-semibold text-white mb-1">
+                    <p className={`font-display text-lg font-semibold mb-1 ${item.label === "경력" ? "text-amber-400" : "text-white"}`}>
                       {item.value}
                     </p>
                     <p className="text-sm text-neutral-400">

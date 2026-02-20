@@ -21,7 +21,7 @@ export default function AboutPage() {
     <div className="container mx-auto px-4">
       <AnimatedSection id="about-me" className="mt-10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">
+          <h2 className="font-display text-4xl font-bold text-center text-white mb-16">
             About Me
           </h2>
           <div className="grid md:grid-cols-[7fr_3fr] gap-12 items-center">
@@ -87,7 +87,7 @@ export default function AboutPage() {
 
       <AnimatedSection id="skills" className="my-10">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">
+          <h2 className="font-display text-4xl font-bold text-center text-white mb-16">
             My Skills
           </h2>
           <Carousel
@@ -118,7 +118,7 @@ export default function AboutPage() {
         className="bg-neutral-900/50 border border-neutral-800 rounded-lg my-10 py-10"
       >
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-white mb-20">
+          <h2 className="font-display text-4xl font-bold text-center text-white mb-20">
             My Journey
           </h2>
           <div className="relative">

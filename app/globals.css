@@ -13,12 +13,6 @@ html body[data-scroll-locked] {
   margin-right: 0 !important;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
 /* Subtle dot grid background pattern */
 body::before {
   content: "";
@@ -33,3 +27,38 @@ body::before {
   );
   background-size: 32px 32px;
 }
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Card hover glow effect */
+  .card-hover-glow {
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .card-hover-glow:hover {
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.08);
+  }
+
+  /* Navigation link underline slide */
+  .link-underline {
+    position: relative;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1.5px;
+    background-color: rgb(56, 189, 248);
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  .link-underline:hover::after {
+    width: 100%;
+    left: 0;
+  }
+}
+

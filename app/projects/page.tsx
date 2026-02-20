@@ -30,7 +30,7 @@ export default function ProjectsPage() {
         className="bg-neutral-900/50 border border-neutral-800 rounded-lg my-10 py-10"
       >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-white mb-16">
+          <h2 className="font-display text-4xl font-bold text-center text-white mb-16">
             Projects
           </h2>
 
@@ -38,7 +38,7 @@ export default function ProjectsPage() {
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-8 p-4">
               <Building2 className="h-6 w-6 text-sky-400" />
-              <h3 className="text-2xl font-semibold text-white">
+              <h3 className="font-display text-2xl font-semibold text-white">
                 회사 프로젝트
               </h3>
             </div>
@@ -58,7 +58,7 @@ export default function ProjectsPage() {
           <div className="mb-16">
             <div className="flex items-center gap-3 mb-8 p-4">
               <User className="h-6 w-6 text-emerald-400" />
-              <h3 className="text-2xl font-semibold text-white">
+              <h3 className="font-display text-2xl font-semibold text-white">
                 개인 프로젝트
               </h3>
             </div>

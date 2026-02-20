@@ -29,7 +29,7 @@ export default function ProjectCard({
       animationType="fadeInUp"
       delay={`${index * 100}ms`}
     >
-      <Card className="bg-neutral-900/80 border-neutral-800 hover:bg-neutral-800/80 transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex flex-col h-full">
+      <Card className="bg-neutral-900/80 border-neutral-800 hover:bg-neutral-800/80 transition-all duration-300 transform hover:-translate-y-1 shadow-lg flex flex-col h-full card-hover-glow">
         <CardHeader className="p-0">
           <Image
             src={project.image || "/placeholder.svg"}
@@ -39,7 +39,7 @@ export default function ProjectCard({
             className="rounded-t-lg mb-4 object-cover w-full h-[225px]"
           />
           <div className="p-6 pt-0 pb-4">
-            <CardTitle className="text-white text-xl">
+            <CardTitle className="font-display text-white text-xl">
               {project.title}
             </CardTitle>
             <CardDescription className="text-neutral-400 mt-2 h-20 overflow-hidden text-ellipsis">
