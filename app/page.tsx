@@ -52,7 +52,7 @@ export default function Portfolio() {
         <InteractiveCanvas />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 pointer-events-none">
         {/* Hero + Highlights in one viewport */}
         <section
           id="home"
@@ -84,12 +84,12 @@ export default function Portfolio() {
                 </p>
 
                 {/* One-liner */}
-                <p className="text-xl md:text-2xl text-neutral-300 max-w-2xl">
-                  웹과 하드웨어의 경계를 넘나드는 개발자
+                <p className="text-lg md:text-xl text-neutral-300 max-w-2xl">
+                  Canvas부터 크로스플랫폼까지, 브라우저의 가능성을 넓히는 개발자
                 </p>
 
                 {/* Tech badges */}
-                <div className="flex flex-wrap gap-2 pt-2">
+                <div className="flex flex-wrap gap-2 pt-2 pointer-events-auto">
                   {coreTech.map((tech) => (
                     <Badge
                       key={tech}
@@ -102,7 +102,7 @@ export default function Portfolio() {
                 </div>
 
                 {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-4">
+                <div className="flex flex-col sm:flex-row gap-3 pt-4 pointer-events-auto">
                   <Button
                     size="lg"
                     className="bg-sky-500 hover:bg-sky-600 text-white"
@@ -132,7 +132,7 @@ export default function Portfolio() {
           {/* Highlights - anchored to bottom of viewport */}
           <AnimatedSection className="pb-8">
             <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pointer-events-auto">
                 {highlights.map((item, idx) => (
                   <AnimatedSection
                     key={item.label}
@@ -146,7 +146,7 @@ export default function Portfolio() {
                     <p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">
                       {item.label}
                     </p>
-                    <p className={`font-display text-2xl md:text-3xl font-bold mb-1 transition-colors ${item.label === "경력" ? "text-amber-400" : "text-white group-hover:text-amber-400"}`}>
+                    <p className="font-display text-2xl md:text-3xl font-bold mb-1 transition-colors text-white group-hover:text-amber-400">
                       {item.value}
                     </p>
                     <p className="text-sm text-neutral-400">
