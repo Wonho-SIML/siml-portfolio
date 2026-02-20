@@ -74,9 +74,14 @@ export default function Portfolio() {
                 </div>
 
                 {/* Name */}
-                <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight">
+                <h1 className="font-display text-7xl md:text-[8rem] lg:text-[10rem] font-bold text-white tracking-tighter leading-[0.9]">
                   서원호
                 </h1>
+
+                {/* English name */}
+                <p className="font-display text-2xl md:text-3xl font-light text-neutral-500 tracking-tight -mt-2">
+                  Wonho Seo
+                </p>
 
                 {/* One-liner */}
                 <p className="text-xl md:text-2xl text-neutral-300 max-w-2xl">
@@ -133,13 +138,15 @@ export default function Portfolio() {
                     key={item.label}
                     animationType="fadeInUp"
                     delay={`${idx * 100}ms`}
-                    className="p-5 rounded-xl bg-neutral-900/80 border border-neutral-800 card-hover-glow transition-all duration-300"
+                    className="group p-6 rounded-2xl bg-neutral-900/80 border border-neutral-800 card-hover-glow transition-all duration-300"
                   >
-                    <div className="text-sky-400 mb-3">{item.icon}</div>
+                    <div className="text-sky-400 mb-3 opacity-60 group-hover:opacity-100 transition-opacity">
+                      {item.icon}
+                    </div>
                     <p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">
                       {item.label}
                     </p>
-                    <p className={`font-display text-lg font-semibold mb-1 ${item.label === "경력" ? "text-amber-400" : "text-white"}`}>
+                    <p className={`font-display text-2xl md:text-3xl font-bold mb-1 transition-colors ${item.label === "경력" ? "text-amber-400" : "text-white group-hover:text-amber-400"}`}>
                       {item.value}
                     </p>
                     <p className="text-sm text-neutral-400">
