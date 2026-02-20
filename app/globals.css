@@ -13,21 +13,6 @@ html body[data-scroll-locked] {
   margin-right: 0 !important;
 }
 
-/* Subtle dot grid background pattern */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.03) 1px,
-    transparent 1px
-  );
-  background-size: 32px 32px;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;

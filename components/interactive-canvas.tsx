@@ -1,14 +1,24 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { Particle } from "@/lib/types";
 
-// 캔버스 설정 값들
-const NUMBER_OF_PARTICLES = 40;
-const CONNECT_DISTANCE = 150;
-const MOUSE_INTERACTION_DISTANCE = 100;
-const PARTICLE_BASE_HUE = 200; // 파티클 기본 색상 (Hue) - 차분한 블루
-const CONNECTION_LINE_COLOR = "rgba(100, 120, 140, 0.15)"; // 연결선 - 은은한 블루그레이
+const GRID_SPACING = 32;
+const DOT_BASE_RADIUS = 1.5;
+const DOT_MAX_RADIUS = 4;
+const MOUSE_RADIUS = 150;
+const BASE_COLOR = { r: 255, g: 255, b: 255, a: 0.06 };
+const ACTIVE_COLOR = { r: 56, g: 189, b: 248 }; // sky-400
+const MAX_DPR = 2;
+
+interface Dot {
+  x: number;
+  y: number;
+  currentRadius: number;
+  currentAlpha: number;
+  targetRadius: number;
+  targetAlpha: number;
+  isActive: boolean;
+}
 
 export default function InteractiveCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -20,134 +30,132 @@ export default function InteractiveCanvas() {
     if (!ctx) return;
 
     let animationFrameId: number;
-    const particlesArray: Particle[] = [];
+    let dots: Dot[] = [];
+    let cols = 0;
+    let rows = 0;
 
-    const mouse = {
-      x: Number.POSITIVE_INFINITY,
-      y: Number.POSITIVE_INFINITY,
-    };
+    const mouse = { x: -9999, y: -9999 };
+    const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
 
-    const resizeCanvas = () => {
-      // TODO: 리사이즈될때마다 파티클을 새로 만드는 이슈 (성능 문제) -> 기존 파티클 위치를 캔버스 크기에 맞춰 조정하는 방식은 어떤가
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      particlesArray.length = 0;
-      for (let i = 0; i < NUMBER_OF_PARTICLES; i++) {
-        const size = Math.random() * 3 + 1;
-        const x = Math.random() * (canvas.width - size * 2) + size;
-        const y = Math.random() * (canvas.height - size * 2) + size;
-        const speedX = (Math.random() - 0.5) * 0.8;
-        const speedY = (Math.random() - 0.5) * 0.8;
-        const saturation = Math.random() * 15 + 15;
-        const lightness = Math.random() * 15 + 30;
-        const color = `hsl(${PARTICLE_BASE_HUE}, ${saturation}%, ${lightness}%)`;
-        particlesArray.push({ x, y, size, speedX, speedY, color });
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+
+    const setupCanvas = () => {
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+
+      cols = Math.floor(width / GRID_SPACING) + 1;
+      rows = Math.floor(height / GRID_SPACING) + 1;
+
+      dots = [];
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          dots.push({
+            x: col * GRID_SPACING,
+            y: row * GRID_SPACING,
+            currentRadius: DOT_BASE_RADIUS,
+            currentAlpha: BASE_COLOR.a,
+            targetRadius: DOT_BASE_RADIUS,
+            targetAlpha: BASE_COLOR.a,
+            isActive: false,
+          });
+        }
       }
     };
-    resizeCanvas();
+
+    setupCanvas();
 
     const handleMouseMove = (event: MouseEvent) => {
-      mouse.x = event.clientX - canvas.getBoundingClientRect().left;
-      mouse.y = event.clientY - canvas.getBoundingClientRect().top;
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = event.clientX - rect.left;
+      mouse.y = event.clientY - rect.top;
     };
+
     const handleMouseOut = () => {
-      mouse.x = Number.POSITIVE_INFINITY;
-      mouse.y = Number.POSITIVE_INFINITY;
+      mouse.x = -9999;
+      mouse.y = -9999;
     };
+
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        setupCanvas();
+      }, 100);
+    };
+
     canvas.addEventListener("mousemove", handleMouseMove);
     canvas.addEventListener("mouseout", handleMouseOut);
+    window.addEventListener("resize", handleResize);
 
-    function updateParticles() {
-      for (let i = 0; i < particlesArray.length; i++) {
-        const p = particlesArray[i];
-        if (p.x + p.size > (canvas?.width || 0) || p.x - p.size < 0) {
-          p.speedX = -p.speedX;
-        }
-        if (p.y + p.size > (canvas?.height || 0) || p.y - p.size < 0) {
-          p.speedY = -p.speedY;
-        }
-        const dxMouse = p.x - mouse.x;
-        const dyMouse = p.y - mouse.y;
-        const distanceMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-
-        if (distanceMouse < MOUSE_INTERACTION_DISTANCE) {
-          const forceDirectionX = dxMouse / distanceMouse;
-          const forceDirectionY = dyMouse / distanceMouse;
-          const force =
-            (MOUSE_INTERACTION_DISTANCE - distanceMouse) /
-            MOUSE_INTERACTION_DISTANCE;
-          const directionX = forceDirectionX * force * 1.5;
-          const directionY = forceDirectionY * force * 1.5;
-          p.x += directionX;
-          p.y += directionY;
-        }
-        p.x += p.speedX;
-        p.y += p.speedY;
-      }
-    }
-
-    function drawParticles() {
-      if (!ctx) return;
-      for (let i = 0; i < particlesArray.length; i++) {
-        const p = particlesArray[i];
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-      }
-    }
-
-    function drawConnections() {
-      if (!ctx) return;
-      for (let i = 0; i < particlesArray.length; i++) {
-        for (let j = i + 1; j < particlesArray.length; j++) {
-          const p1 = particlesArray[i];
-          const p2 = particlesArray[j];
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < CONNECT_DISTANCE) {
-            const opacity = 1 - distance / CONNECT_DISTANCE;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            const baseColorMatch = CONNECTION_LINE_COLOR.match(
-              /rgba\((\d+),(\d+),(\d+),([0-9.]+)\)/
-            );
-            if (baseColorMatch) {
-              const r = baseColorMatch[1];
-              const g = baseColorMatch[2];
-              const b = baseColorMatch[3];
-              const baseAlpha = parseFloat(baseColorMatch[4]);
-              ctx.strokeStyle = `rgba(${r},${g},${b},${opacity * baseAlpha})`;
-            } else {
-              ctx.strokeStyle = `rgba(100, 200, 200, ${opacity * 0.3})`;
-            }
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-    }
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
     function animate() {
       if (!ctx || !canvas) return;
       animationFrameId = requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "transparent";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      updateParticles();
-      drawConnections();
-      drawParticles();
+
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      ctx.clearRect(0, 0, width, height);
+
+      const mouseRadiusSq = MOUSE_RADIUS * MOUSE_RADIUS;
+
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i];
+
+        // Calculate distance to mouse
+        const dx = dot.x - mouse.x;
+        const dy = dot.y - mouse.y;
+        const distSq = dx * dx + dy * dy;
+
+        if (distSq < mouseRadiusSq) {
+          const dist = Math.sqrt(distSq);
+          const influence = 1 - dist / MOUSE_RADIUS;
+          // Ease the influence for smoother falloff
+          const easedInfluence = influence * influence;
+
+          dot.targetRadius = DOT_BASE_RADIUS + (DOT_MAX_RADIUS - DOT_BASE_RADIUS) * easedInfluence;
+          dot.targetAlpha = BASE_COLOR.a + (0.6 - BASE_COLOR.a) * easedInfluence;
+          dot.isActive = true;
+        } else {
+          dot.targetRadius = DOT_BASE_RADIUS;
+          dot.targetAlpha = BASE_COLOR.a;
+          dot.isActive = false;
+        }
+
+        // Smoothly interpolate current values toward targets
+        const lerpSpeed = 0.15;
+        dot.currentRadius = lerp(dot.currentRadius, dot.targetRadius, lerpSpeed);
+        dot.currentAlpha = lerp(dot.currentAlpha, dot.targetAlpha, lerpSpeed);
+
+        // Draw dot
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.currentRadius, 0, Math.PI * 2);
+
+        if (dot.isActive || dot.currentAlpha > BASE_COLOR.a + 0.005) {
+          // Blend from base white to sky-400
+          const blendFactor = (dot.currentAlpha - BASE_COLOR.a) / (0.6 - BASE_COLOR.a);
+          const r = Math.round(lerp(BASE_COLOR.r, ACTIVE_COLOR.r, blendFactor));
+          const g = Math.round(lerp(BASE_COLOR.g, ACTIVE_COLOR.g, blendFactor));
+          const b = Math.round(lerp(BASE_COLOR.b, ACTIVE_COLOR.b, blendFactor));
+          ctx.fillStyle = `rgba(${r},${g},${b},${dot.currentAlpha})`;
+        } else {
+          ctx.fillStyle = `rgba(${BASE_COLOR.r},${BASE_COLOR.g},${BASE_COLOR.b},${BASE_COLOR.a})`;
+        }
+
+        ctx.fill();
+      }
     }
 
     animate();
-    window.addEventListener("resize", resizeCanvas);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", resizeCanvas);
+      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", handleResize);
       canvas.removeEventListener("mousemove", handleMouseMove);
       canvas.removeEventListener("mouseout", handleMouseOut);
     };
