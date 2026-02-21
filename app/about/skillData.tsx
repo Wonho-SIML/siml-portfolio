@@ -15,7 +15,9 @@ import {
   SiTailwindcss,
   SiGithub,
   SiJira,
+  SiFirebase,
 } from "react-icons/si";
+import { TbGhost2Filled } from "react-icons/tb";
 import { RiNextjsFill } from "react-icons/ri";
 import { TbBrandCSharp, TbBluetooth } from "react-icons/tb";
 import { Skill } from "@/lib/types";
@@ -40,6 +42,10 @@ export const skillsData: Skill[] = [
     name: "MobX",
     icon: <SiMobx className="w-10 h-10 text-orange-400" />,
     // proficiency: "A",
+  },
+  {
+    name: "Jotai",
+    icon: <TbGhost2Filled className="w-10 h-10 text-neutral-300" />,
   },
   {
     name: "Redux",
@@ -95,6 +101,10 @@ export const skillsData: Skill[] = [
     name: "Tailwind CSS",
     icon: <SiTailwindcss className="w-10 h-10 text-teal-400" />,
     // proficiency: "B",
+  },
+  {
+    name: "Firebase",
+    icon: <SiFirebase className="w-10 h-10 text-amber-400" />,
   },
   {
     name: "Git & GitHub",

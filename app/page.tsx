@@ -11,9 +11,9 @@ import { calculateExperience } from "@/lib/utils";
 const coreTech = [
   "React",
   "TypeScript",
-  "Next.js",
-  "Canvas API",
   "C# / MAUI",
+  "Canvas API",
+  "BLE",
   "MobX",
 ];
 

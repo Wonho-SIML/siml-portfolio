@@ -1,7 +1,7 @@
 "use client";
 import type React from "react";
 import Image from "next/image";
-import { Code, Palette, Zap, ExternalLink } from "lucide-react";
+import { Code, Palette, Zap, ExternalLink, Sparkles } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 
 import { calculateExperience, cn } from "@/lib/utils";
@@ -41,7 +41,12 @@ export default function AboutPage() {
                 다양한 플랫폼 환경에 대한 높은 이해를 바탕으로 기술적 제약을
                 극복하고 최적의 사용자 경험(UX)을 설계 및 제공합니다.
               </p>
-              <div className="grid grid-cols-2 gap-4 mt-8">
+              <p className="text-lg leading-relaxed">
+                Cursor, Claude 등 AI 코딩 도구를 실무 개발 워크플로우에 적극
+                활용하며, AI/LLM 기술 동향에 지속적인 관심을 갖고 학습하고
+                있습니다.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-8">
                 {[
                   {
                     icon: <Code className="text-sky-400" size={20} />,
@@ -58,6 +63,10 @@ export default function AboutPage() {
                   {
                     icon: <ExternalLink className="text-emerald-400" size={20} />,
                     text: "웹 표준 기술 숙련", // websocket, canvas, ble
+                  },
+                  {
+                    icon: <Sparkles className="text-violet-400" size={20} />,
+                    text: "AI 도구 활용 개발", // cursor, claude
                   },
                 ].map((item, idx) => (
                   <AnimatedSection
