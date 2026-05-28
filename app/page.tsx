@@ -108,7 +108,10 @@ export default function Portfolio() {
                     className="bg-sky-500 hover:bg-sky-600 text-white"
                     asChild
                   >
-                    <a href="/swh_resume.pdf" download="swh_resume.pdf">
+                    <a
+                      href="/Wonho_Seo_Frontend_Resume.pdf"
+                      download="Wonho_Seo_Frontend_Resume.pdf"
+                    >
                       <Download className="mr-2 h-4 w-4" />
                       이력서 다운로드
                     </a>
