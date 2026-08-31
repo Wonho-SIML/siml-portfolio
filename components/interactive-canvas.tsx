@@ -3,21 +3,17 @@
 import { useEffect, useRef } from "react";
 
 const GRID_SPACING = 32;
-const DOT_BASE_RADIUS = 1.5;
-const DOT_MAX_RADIUS = 4;
-const MOUSE_RADIUS = 150;
-const BASE_COLOR = { r: 255, g: 255, b: 255, a: 0.06 };
-const ACTIVE_COLOR = { r: 56, g: 189, b: 248 }; // sky-400
+const DOT_BASE_RADIUS = 1.4;
+const DOT_MAX_RADIUS = 3.8;
+const POINTER_RADIUS = 150;
+const BASE_ALPHA = 0.06;
 const MAX_DPR = 2;
 
 interface Dot {
   x: number;
   y: number;
-  currentRadius: number;
-  currentAlpha: number;
-  targetRadius: number;
-  targetAlpha: number;
-  isActive: boolean;
+  radius: number;
+  alpha: number;
 }
 
 export default function InteractiveCanvas() {
@@ -25,141 +21,149 @@ export default function InteractiveCanvas() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const context = canvas?.getContext("2d");
+    if (!canvas || !context) return;
 
-    let animationFrameId: number;
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    const pointer = { x: -9999, y: -9999 };
     let dots: Dot[] = [];
-    let cols = 0;
-    let rows = 0;
+    let frameId: number | null = null;
+    let resizeTimer: ReturnType<typeof setTimeout> | null = null;
 
-    const mouse = { x: -9999, y: -9999 };
-    const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
-
-    let resizeTimeout: ReturnType<typeof setTimeout>;
-
-    const setupCanvas = () => {
+    const setup = () => {
       const width = canvas.offsetWidth;
       const height = canvas.offsetHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR);
 
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
-      ctx.scale(dpr, dpr);
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      cols = Math.floor(width / GRID_SPACING) + 1;
-      rows = Math.floor(height / GRID_SPACING) + 1;
+      const columns = Math.floor(width / GRID_SPACING) + 1;
+      const rows = Math.floor(height / GRID_SPACING) + 1;
+      dots = Array.from({ length: columns * rows }, (_, index) => ({
+        x: (index % columns) * GRID_SPACING,
+        y: Math.floor(index / columns) * GRID_SPACING,
+        radius: DOT_BASE_RADIUS,
+        alpha: BASE_ALPHA,
+      }));
+    };
 
-      dots = [];
-      for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-          dots.push({
-            x: col * GRID_SPACING,
-            y: row * GRID_SPACING,
-            currentRadius: DOT_BASE_RADIUS,
-            currentAlpha: BASE_COLOR.a,
-            targetRadius: DOT_BASE_RADIUS,
-            targetAlpha: BASE_COLOR.a,
-            isActive: false,
-          });
-        }
+    const draw = () => {
+      frameId = null;
+      const width = canvas.offsetWidth;
+      const height = canvas.offsetHeight;
+      const pointerRadiusSquared = POINTER_RADIUS * POINTER_RADIUS;
+      let unsettled = false;
+
+      context.clearRect(0, 0, width, height);
+
+      for (const dot of dots) {
+        const xDistance = dot.x - pointer.x;
+        const yDistance = dot.y - pointer.y;
+        const distanceSquared =
+          xDistance * xDistance + yDistance * yDistance;
+        const influence =
+          !reducedMotion && distanceSquared < pointerRadiusSquared
+            ? Math.pow(
+                1 - Math.sqrt(distanceSquared) / POINTER_RADIUS,
+                2
+              )
+            : 0;
+        const targetRadius =
+          DOT_BASE_RADIUS + (DOT_MAX_RADIUS - DOT_BASE_RADIUS) * influence;
+        const targetAlpha = BASE_ALPHA + (0.55 - BASE_ALPHA) * influence;
+
+        dot.radius += (targetRadius - dot.radius) * 0.18;
+        dot.alpha += (targetAlpha - dot.alpha) * 0.18;
+        unsettled ||=
+          Math.abs(targetRadius - dot.radius) > 0.01 ||
+          Math.abs(targetAlpha - dot.alpha) > 0.002;
+
+        const colorMix = Math.max(
+          0,
+          Math.min(1, (dot.alpha - BASE_ALPHA) / (0.55 - BASE_ALPHA))
+        );
+        const red = Math.round(255 + (56 - 255) * colorMix);
+        const green = Math.round(255 + (189 - 255) * colorMix);
+        const blue = Math.round(255 + (248 - 255) * colorMix);
+
+        context.beginPath();
+        context.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+        context.fillStyle = `rgba(${red}, ${green}, ${blue}, ${dot.alpha})`;
+        context.fill();
+      }
+
+      if (unsettled && !document.hidden) {
+        frameId = requestAnimationFrame(draw);
       }
     };
 
-    setupCanvas();
-
-    const handleMouseMove = (event: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = event.clientX - rect.left;
-      mouse.y = event.clientY - rect.top;
+    const requestDraw = () => {
+      if (frameId === null && !document.hidden) {
+        frameId = requestAnimationFrame(draw);
+      }
     };
 
-    const handleMouseOut = () => {
-      mouse.x = -9999;
-      mouse.y = -9999;
+    const handlePointerMove = (event: PointerEvent) => {
+      const bounds = canvas.getBoundingClientRect();
+      pointer.x = event.clientX - bounds.left;
+      pointer.y = event.clientY - bounds.top;
+      requestDraw();
+    };
+
+    const handlePointerLeave = () => {
+      pointer.x = -9999;
+      pointer.y = -9999;
+      requestDraw();
     };
 
     const handleResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        setupCanvas();
-      }, 100);
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        setup();
+        requestDraw();
+      }, 120);
     };
 
-    canvas.addEventListener("mousemove", handleMouseMove);
-    canvas.addEventListener("mouseout", handleMouseOut);
-    window.addEventListener("resize", handleResize);
-
-    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-
-    function animate() {
-      if (!ctx || !canvas) return;
-      animationFrameId = requestAnimationFrame(animate);
-
-      const width = canvas.offsetWidth;
-      const height = canvas.offsetHeight;
-      ctx.clearRect(0, 0, width, height);
-
-      const mouseRadiusSq = MOUSE_RADIUS * MOUSE_RADIUS;
-
-      for (let i = 0; i < dots.length; i++) {
-        const dot = dots[i];
-
-        // Calculate distance to mouse
-        const dx = dot.x - mouse.x;
-        const dy = dot.y - mouse.y;
-        const distSq = dx * dx + dy * dy;
-
-        if (distSq < mouseRadiusSq) {
-          const dist = Math.sqrt(distSq);
-          const influence = 1 - dist / MOUSE_RADIUS;
-          // Ease the influence for smoother falloff
-          const easedInfluence = influence * influence;
-
-          dot.targetRadius = DOT_BASE_RADIUS + (DOT_MAX_RADIUS - DOT_BASE_RADIUS) * easedInfluence;
-          dot.targetAlpha = BASE_COLOR.a + (0.6 - BASE_COLOR.a) * easedInfluence;
-          dot.isActive = true;
-        } else {
-          dot.targetRadius = DOT_BASE_RADIUS;
-          dot.targetAlpha = BASE_COLOR.a;
-          dot.isActive = false;
-        }
-
-        // Smoothly interpolate current values toward targets
-        const lerpSpeed = 0.15;
-        dot.currentRadius = lerp(dot.currentRadius, dot.targetRadius, lerpSpeed);
-        dot.currentAlpha = lerp(dot.currentAlpha, dot.targetAlpha, lerpSpeed);
-
-        // Draw dot
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.currentRadius, 0, Math.PI * 2);
-
-        if (dot.isActive || dot.currentAlpha > BASE_COLOR.a + 0.005) {
-          // Blend from base white to sky-400
-          const blendFactor = (dot.currentAlpha - BASE_COLOR.a) / (0.6 - BASE_COLOR.a);
-          const r = Math.round(lerp(BASE_COLOR.r, ACTIVE_COLOR.r, blendFactor));
-          const g = Math.round(lerp(BASE_COLOR.g, ACTIVE_COLOR.g, blendFactor));
-          const b = Math.round(lerp(BASE_COLOR.b, ACTIVE_COLOR.b, blendFactor));
-          ctx.fillStyle = `rgba(${r},${g},${b},${dot.currentAlpha})`;
-        } else {
-          ctx.fillStyle = `rgba(${BASE_COLOR.r},${BASE_COLOR.g},${BASE_COLOR.b},${BASE_COLOR.a})`;
-        }
-
-        ctx.fill();
+    const handleVisibility = () => {
+      if (document.hidden && frameId !== null) {
+        cancelAnimationFrame(frameId);
+        frameId = null;
+      } else {
+        requestDraw();
       }
-    }
+    };
 
-    animate();
+    setup();
+    draw();
+
+    if (!reducedMotion) {
+      window.addEventListener("pointermove", handlePointerMove, {
+        passive: true,
+      });
+      window.addEventListener("pointerleave", handlePointerLeave);
+    }
+    window.addEventListener("resize", handleResize);
+    document.addEventListener("visibilitychange", handleVisibility);
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
-      clearTimeout(resizeTimeout);
+      if (frameId !== null) cancelAnimationFrame(frameId);
+      if (resizeTimer) clearTimeout(resizeTimer);
+      window.removeEventListener("pointermove", handlePointerMove);
+      window.removeEventListener("pointerleave", handlePointerLeave);
       window.removeEventListener("resize", handleResize);
-      canvas.removeEventListener("mousemove", handleMouseMove);
-      canvas.removeEventListener("mouseout", handleMouseOut);
+      document.removeEventListener("visibilitychange", handleVisibility);
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden="true"
+      className="absolute inset-0 h-full w-full"
+    />
+  );
 }

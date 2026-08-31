@@ -6,6 +6,125 @@
 html {
   overflow-y: auto;
   scrollbar-gutter: stable;
+  background: rgb(10 10 10);
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  word-break: keep-all;
+}
+
+@media print {
+  html {
+    background: white;
+  }
+  body {
+    background: white !important;
+    color: rgb(23 23 23) !important;
+  }
+  body * {
+    background: transparent !important;
+    color: rgb(23 23 23) !important;
+    border-color: rgb(212 212 212) !important;
+    box-shadow: none !important;
+  }
+  nav,
+  footer,
+  .skip-link,
+  canvas {
+    display: none !important;
+  }
+}
+
+::selection {
+  background: rgba(56, 189, 248, 0.28);
+  color: white;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  transform: translateY(-180%);
+  border-radius: 0.5rem;
+  background: rgb(56 189 248);
+  padding: 0.65rem 1rem;
+  color: rgb(10 10 10);
+  font-weight: 700;
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+.reveal {
+  animation-duration: 650ms;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-up {
+  animation-name: reveal-up;
+}
+
+.reveal-left {
+  animation-name: reveal-left;
+}
+
+.reveal-right {
+  animation-name: reveal-right;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Override react-remove-scroll-bar's compensation (already handled by scrollbar-gutter) */

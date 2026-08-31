@@ -22,6 +22,14 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Company demo captures can contain non-public product or account data.
+/private-review-assets/
+
+# Local career source material contains personal and company-only details.
+/career-update-docs/
+/이력서.md
+/.claude/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

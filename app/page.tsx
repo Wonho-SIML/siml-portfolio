@@ -1,167 +1,206 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Download, ArrowRight, Code, Layers, Monitor, Cpu } from "lucide-react";
-import InteractiveCanvas from "@/components/interactive-canvas";
+import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  ArrowRight,
+  DatabaseZap,
+  FileStack,
+  Layers3,
+  RadioTower,
+  ShieldCheck,
+} from "lucide-react";
+
 import AnimatedSection from "@/components/animated-section";
+import InteractiveCanvas from "@/components/interactive-canvas";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { calculateExperience } from "@/lib/utils";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const coreTech = [
   "React",
   "TypeScript",
-  "C# / MAUI",
-  "Canvas API",
+  ".NET MAUI",
+  "WebAssembly",
+  "WebSocket",
   "BLE",
-  "MobX",
+];
+
+const strengths = [
+  {
+    icon: DatabaseZap,
+    title: "오프라인 동기화",
+    description:
+      "앱이 백그라운드로 전환되거나 동기화가 겹칠 때 생기는 데이터 중복과 유실 위험을 추적하고, 저장과 복구 순서를 수정했습니다.",
+  },
+  {
+    icon: FileStack,
+    title: "대용량 PDF 처리",
+    description:
+      "수 GB 규모 문서를 나누어 전송하고, 해시 검증과 임시 파일 처리를 적용해 전송 중단과 불완전 저장을 감지하고 다시 처리할 수 있도록 했습니다.",
+  },
+  {
+    icon: RadioTower,
+    title: "실시간 협업과 음성 처리",
+    description:
+      "세션 연결과 재접속 처리를 정리하고, 실시간 STT 결과가 세션 종료 후 교정과 요약, 아카이브 분석으로 이어지도록 구성했습니다.",
+  },
 ];
 
 const highlights = [
-  {
-    icon: <Code className="h-5 w-5" />,
-    label: "경력",
-    value: calculateExperience() + "+",
-    description: "React 기반 프론트엔드",
-  },
-  {
-    icon: <Layers className="h-5 w-5" />,
-    label: "전문 분야",
-    value: "크로스플랫폼",
-    description: "MAUI + React 하이브리드",
-  },
-  {
-    icon: <Monitor className="h-5 w-5" />,
-    label: "핵심 역량",
-    value: "Canvas & BLE",
-    description: "웹 표준 고급 기술 활용",
-  },
-  {
-    icon: <Cpu className="h-5 w-5" />,
-    label: "성과",
-    value: "레거시 전환",
-    description: "QT/C++ → 웹 기반 전환",
-  },
+  { value: calculateExperience(), label: "실무 개발 경력" },
+  { value: "4개 플랫폼", label: "Android, iOS, Web, Windows" },
+  { value: "웹과 네이티브", label: "React, .NET MAUI 연동" },
+  { value: "실제 환경 검증", label: "회귀 테스트, 플랫폼별 QA, 패키징" },
 ];
 
 export default function Portfolio() {
   return (
     <>
-      {/* Full-viewport particle background */}
-      <div className="fixed inset-0 z-0">
+      <div className="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
         <InteractiveCanvas />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10 pointer-events-none">
-        {/* Hero + Highlights in one viewport */}
-        <section
-          id="home"
-          className="min-h-screen flex flex-col -mt-16 sm:-mt-20"
-        >
-          {/* Hero content - vertically centered in remaining space */}
-          <div className="flex-1 flex items-center pt-16 sm:pt-20">
-            <AnimatedSection
-              animationType="fadeInUp"
-              className="w-full max-w-5xl mx-auto"
-            >
-              <div className="space-y-6">
-                {/* Label */}
-                <div className="flex items-center gap-3">
-                  <div className="h-px w-8 bg-sky-400" />
-                  <span className="font-display text-sky-400 text-sm font-medium tracking-widest uppercase">
-                    Frontend Developer
-                  </span>
+      <main className="relative z-10 break-keep">
+        <section className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-7xl flex-col justify-center px-5 py-16 sm:px-8 lg:px-10">
+          <AnimatedSection className="max-w-5xl" animationType="fadeInUp">
+            <div className="mb-7 flex items-center gap-3">
+              <span className="h-px w-8 bg-sky-400" aria-hidden="true" />
+              <p className="font-display text-sm font-medium uppercase tracking-[0.18em] text-sky-300">
+                Frontend / Hybrid Client Engineer
+              </p>
+            </div>
+
+            <h1 className="text-balance font-display text-5xl font-bold leading-[1.02] tracking-tight text-white sm:text-7xl lg:text-[5.6rem]">
+              데이터와 문서가
+              <br />끝까지 안전하게 흐르도록.
+            </h1>
+
+            <p className="mt-7 max-w-3xl text-base leading-8 text-neutral-300 sm:text-xl sm:leading-9">
+              React와 .NET MAUI로 웹 서비스와 하이브리드 앱을 개발하며 오프라인
+              동기화, 대용량 PDF 처리, 실시간 협업, 음성 처리, BLE 펜 연동을 구현해
+              온 서원호입니다.
+            </p>
+
+            <div className="mt-7 flex flex-wrap gap-2" aria-label="핵심 기술">
+              {coreTech.map((tech) => (
+                <Badge
+                  key={tech}
+                  variant="outline"
+                  className="border-neutral-700 bg-neutral-900/70 px-3 py-1 text-neutral-300"
+                >
+                  {tech}
+                </Badge>
+              ))}
+            </div>
+
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Button
+                asChild
+                size="lg"
+                className="bg-sky-400 text-neutral-950 hover:bg-sky-300"
+              >
+                <Link href="/projects">
+                  프로젝트 사례 보기 <ArrowRight aria-hidden="true" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-neutral-700 bg-neutral-950/60 text-neutral-200 hover:bg-neutral-800 hover:text-white"
+              >
+                <Link href="/resume">경력 요약 보기</Link>
+              </Button>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection className="mt-14" delay="120ms">
+            <dl className="grid gap-px overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-800 sm:grid-cols-2 lg:grid-cols-4">
+              {highlights.map((item) => (
+                <div key={item.label} className="bg-neutral-950/90 p-5 sm:p-6">
+                  <dt className="text-xs leading-5 text-neutral-400">{item.label}</dt>
+                  <dd className="mt-1 font-display text-lg font-semibold text-white">
+                    {item.value}
+                  </dd>
                 </div>
+              ))}
+            </dl>
+          </AnimatedSection>
+        </section>
 
-                {/* Name */}
-                <h1 className="font-display text-7xl md:text-[8rem] lg:text-[10rem] font-bold text-white tracking-tighter leading-[0.9]">
-                  서원호
-                </h1>
-
-                {/* English name */}
-                <p className="font-display text-2xl md:text-3xl font-light text-neutral-500 tracking-tight -mt-2">
-                  Wonho Seo
+        <section className="border-y border-neutral-800/80 bg-neutral-950/80">
+          <div className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-8 lg:px-10">
+            <AnimatedSection className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+              <div>
+                <div className="mb-4 flex items-center gap-2 text-sky-300">
+                  <Layers3 className="h-5 w-5" aria-hidden="true" />
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em]">
+                    주요 작업
+                  </p>
+                </div>
+                <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
+                  실무에서 다음 문제를 주로 다뤘습니다.
+                </h2>
+                <p className="mt-5 text-base leading-7 text-neutral-400">
+                  데이터 중복, 문서 전송 실패, 세션 끊김처럼 실제 사용 환경에서
+                  발생한 문제를 재현해 수정하고, 관련 사용자 흐름을 회귀 테스트와
+                  실기 검증으로 처음부터 끝까지 확인했습니다.
                 </p>
-
-                {/* One-liner */}
-                <p className="text-lg md:text-xl text-neutral-300 max-w-2xl">
-                  Canvas부터 크로스플랫폼까지, 브라우저의 가능성을 넓히는 개발자
-                </p>
-
-                {/* Tech badges */}
-                <div className="flex flex-wrap gap-2 pt-2 pointer-events-auto">
-                  {coreTech.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="outline"
-                      className="border-neutral-700 text-neutral-300 bg-neutral-900/50 hover:border-sky-400/50 hover:text-sky-300 hover:scale-105 hover:shadow-lg hover:shadow-sky-400/20 transition-all duration-200 px-3 py-1 text-sm"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-
-                {/* CTAs */}
-                <div className="flex flex-col sm:flex-row gap-3 pt-4 pointer-events-auto">
-                  <Button
-                    size="lg"
-                    className="bg-sky-500 hover:bg-sky-600 text-white"
-                    asChild
-                  >
-                    <a
-                      href="/Wonho_Seo_Frontend_Resume.pdf"
-                      download="Wonho_Seo_Frontend_Resume.pdf"
-                    >
-                      <Download className="mr-2 h-4 w-4" />
-                      이력서 다운로드
-                    </a>
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-neutral-700 text-neutral-300 hover:bg-neutral-800 hover:text-white"
-                    asChild
-                  >
-                    <Link href="/projects">
-                      프로젝트 보기
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Link>
-                  </Button>
-                </div>
               </div>
-            </AnimatedSection>
-          </div>
 
-          {/* Highlights - anchored to bottom of viewport */}
-          <AnimatedSection className="pb-8">
-            <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pointer-events-auto">
-                {highlights.map((item, idx) => (
+              <div className="grid gap-4 sm:grid-cols-3">
+                {strengths.map(({ icon: Icon, title, description }, index) => (
                   <AnimatedSection
-                    key={item.label}
-                    animationType="fadeInUp"
-                    delay={`${idx * 100}ms`}
-                    className="group p-6 rounded-2xl bg-neutral-900/80 border border-neutral-800 card-hover-glow transition-all duration-300"
+                    key={title}
+                    delay={`${index * 80}ms`}
+                    className="rounded-2xl border border-neutral-800 bg-neutral-900/75 p-6"
                   >
-                    <div className="text-sky-400 mb-3 opacity-60 group-hover:opacity-100 transition-opacity">
-                      {item.icon}
-                    </div>
-                    <p className="text-xs text-neutral-500 uppercase tracking-wider mb-1">
-                      {item.label}
-                    </p>
-                    <p className="font-display text-2xl md:text-3xl font-bold mb-1 transition-colors text-white group-hover:text-amber-400">
-                      {item.value}
-                    </p>
-                    <p className="text-sm text-neutral-400">
-                      {item.description}
+                    <Icon className="h-6 w-6 text-sky-300" aria-hidden="true" />
+                    <h3 className="mt-5 font-display text-lg font-semibold text-white">
+                      {title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-neutral-400">
+                      {description}
                     </p>
                   </AnimatedSection>
                 ))}
               </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-8 lg:px-10">
+          <AnimatedSection className="rounded-3xl border border-sky-400/20 bg-gradient-to-br from-sky-400/10 via-neutral-900 to-neutral-950 p-7 sm:p-10">
+            <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
+              <div className="max-w-2xl">
+                <div className="flex items-center gap-2 text-sky-300">
+                  <ShieldCheck className="h-5 w-5" aria-hidden="true" />
+                  <p className="text-sm font-semibold">경력과 프로젝트</p>
+                </div>
+                <h2 className="mt-4 font-display text-2xl font-semibold text-white sm:text-3xl">
+                  그동안 맡아 온 주요 프로젝트를 정리했습니다.
+                </h2>
+                <p className="mt-4 text-sm leading-7 text-neutral-400 sm:text-base">
+                  하이브리드 앱 NeoStudio2와 스마트펜 Web SDK, 문서 제작·출력 도구
+                  CasterN, 실시간 협업 서비스 NeoCAST를 개발하며 맡은 역할과
+                  해결한 문제를 프로젝트별로 소개합니다.
+                </p>
+              </div>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="shrink-0 border-sky-300/30 bg-transparent text-sky-100 hover:bg-sky-300 hover:text-neutral-950"
+              >
+                <Link href="/about">경험과 작업 방식 보기</Link>
+              </Button>
             </div>
           </AnimatedSection>
         </section>
-      </div>
+      </main>
     </>
   );
 }
