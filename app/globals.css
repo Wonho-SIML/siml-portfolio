@@ -2,11 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * 테마 토큰 정본. 값은 공백 구분 RGB 채널로 두어
+ * Tailwind에서 rgb(var(--x) / <alpha-value>) 알파 변형과 함께 쓴다.
+ * 역할 이름(tailwind.config.ts 매핑)만 코드에서 사용하고, 원색은 여기서만 정한다.
+ */
+:root {
+  --background: 250 250 250;
+  --card: 255 255 255;
+  --muted: 229 229 229;
+  --foreground: 10 10 10;
+  --foreground-soft: 38 38 38;
+  --foreground-muted: 64 64 64;
+  --foreground-subtle: 82 82 82;
+  --border: 229 229 229;
+  --input: 212 212 212;
+  /* 라이트 sky 계열은 700 이상을 쓴다. sky-600은 흰 배경·틴트 위에서
+     WCAG AA(4.5:1)에 미달한다(실측 3.46~4.10:1). */
+  --brand: 3 105 161;
+  --brand-hover: 7 89 133;
+  --primary: 3 105 161;
+  --primary-foreground: 255 255 255;
+  --primary-hover: 7 89 133;
+  --ring: 3 105 161;
+  --success: 4 120 87;
+  --destructive: 220 38 38;
+  --destructive-foreground: 255 255 255;
+}
+
+.dark {
+  --background: 10 10 10;
+  --card: 23 23 23;
+  --muted: 38 38 38;
+  --foreground: 255 255 255;
+  --foreground-soft: 229 229 229;
+  --foreground-muted: 212 212 212;
+  --foreground-subtle: 163 163 163;
+  --border: 38 38 38;
+  --input: 64 64 64;
+  --brand: 125 211 252;
+  --brand-hover: 186 230 253;
+  --primary: 56 189 248;
+  --primary-foreground: 10 10 10;
+  --primary-hover: 125 211 252;
+  --ring: 56 189 248;
+  --success: 110 231 183;
+  --destructive: 239 68 68;
+  --destructive-foreground: 255 255 255;
+}
+
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: rgb(var(--border));
+  }
+}
+
 /* Prevent layout shift when modal opens/closes (scrollbar disappears) */
 html {
   overflow-y: auto;
   scrollbar-gutter: stable;
-  background: rgb(10 10 10);
+  background: rgb(var(--background));
 }
 
 body {
@@ -37,8 +94,8 @@ body {
 }
 
 ::selection {
-  background: rgba(56, 189, 248, 0.28);
-  color: white;
+  background: rgb(var(--brand) / 0.28);
+  color: rgb(var(--foreground));
 }
 
 .skip-link {
@@ -48,16 +105,16 @@ body {
   z-index: 100;
   transform: translateY(-180%);
   border-radius: 0.5rem;
-  background: rgb(56 189 248);
+  background: rgb(var(--primary));
   padding: 0.65rem 1rem;
-  color: rgb(10 10 10);
+  color: rgb(var(--primary-foreground));
   font-weight: 700;
   transition: transform 150ms ease;
 }
 
 .skip-link:focus {
   transform: translateY(0);
-  outline: 2px solid white;
+  outline: 2px solid rgb(var(--foreground));
   outline-offset: 2px;
 }
 
@@ -131,38 +188,3 @@ body {
 html body[data-scroll-locked] {
   margin-right: 0 !important;
 }
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Card hover glow effect */
-  .card-hover-glow {
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-  .card-hover-glow:hover {
-    border-color: rgba(56, 189, 248, 0.3);
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.08);
-  }
-
-  /* Navigation link underline slide */
-  .link-underline {
-    position: relative;
-  }
-  .link-underline::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 1.5px;
-    background-color: rgb(56, 189, 248);
-    transition: width 0.3s ease, left 0.3s ease;
-  }
-  .link-underline:hover::after {
-    width: 100%;
-    left: 0;
-  }
-}
-

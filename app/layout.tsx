@@ -1,9 +1,10 @@
 import type React from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Noto_Sans_KR, Outfit } from "next/font/google";
 
 import Footer from "@/components/footer";
 import Navigation from "@/components/navigation";
+import ThemeProvider from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -25,6 +26,15 @@ const outfit = Outfit({
   variable: "--font-display",
   preload: true,
 });
+
+// 수동 토글 값까지는 반영하지 못하지만, 시스템 테마 기준으로
+// 모바일 브라우저 UI 색을 페이지 배경과 맞춘다.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -110,22 +120,26 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="ko" className="dark">
+    // suppressHydrationWarning: next-themes가 하이드레이션 전에 <html>의
+    // class와 color-scheme을 저장된 테마로 바꾸므로 속성 불일치 경고를 막는다.
+    <html lang="ko" suppressHydrationWarning>
       <body
         className={cn(
           notoSansKR.variable,
           outfit.variable,
-          "flex min-h-screen flex-col bg-neutral-950 font-body text-gray-100"
+          "flex min-h-screen flex-col bg-background font-body text-foreground"
         )}
       >
-        <a href="#main-content" className="skip-link">
-          본문으로 건너뛰기
-        </a>
-        <Navigation />
-        <div id="main-content" tabIndex={-1} className="flex-grow pt-16">
-          {children}
-        </div>
-        <Footer />
+        <ThemeProvider>
+          <a href="#main-content" className="skip-link">
+            본문으로 건너뛰기
+          </a>
+          <Navigation />
+          <div id="main-content" tabIndex={-1} className="flex-grow pt-16">
+            {children}
+          </div>
+          <Footer />
+        </ThemeProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

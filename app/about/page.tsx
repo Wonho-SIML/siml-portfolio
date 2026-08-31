@@ -72,14 +72,14 @@ export default function AboutPage() {
     <main className="mx-auto w-full max-w-7xl px-5 pb-24 pt-14 sm:px-8 lg:px-10">
       <AnimatedSection className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">
             About
           </p>
-          <h1 className="mt-4 text-balance font-display text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          <h1 className="mt-4 text-balance font-display text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
             웹과 앱 사이에서 생기는 문제를
             <br />분명하게 정리합니다.
           </h1>
-          <div className="mt-7 max-w-3xl space-y-5 text-base leading-8 text-neutral-300 sm:text-lg">
+          <div className="mt-7 max-w-3xl space-y-5 text-base leading-8 text-foreground-muted sm:text-lg">
             <p>
               안녕하세요. React를 중심으로 웹 서비스를 개발해 왔고, 현재는 .NET
               MAUI와 React를 함께 사용하는 하이브리드 앱도 개발하고 있는
@@ -101,7 +101,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button asChild className="bg-sky-400 text-neutral-950 hover:bg-sky-300">
+            <Button asChild className="bg-primary text-primary-foreground hover:bg-primary-hover">
               <Link href="/projects">
                 구현 사례 보기 <ArrowRight aria-hidden="true" />
               </Link>
@@ -109,7 +109,7 @@ export default function AboutPage() {
             <Button
               asChild
               variant="outline"
-              className="border-neutral-700 bg-transparent text-neutral-300 hover:bg-neutral-800 hover:text-white"
+              className="border-input bg-transparent text-foreground-muted hover:bg-muted hover:text-foreground"
             >
               <Link href="/resume">경력 요약 보기</Link>
             </Button>
@@ -117,8 +117,8 @@ export default function AboutPage() {
         </div>
 
         <div className="relative mx-auto w-full max-w-md">
-          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-sky-400/20 via-transparent to-violet-400/10 blur-2xl" />
-          <div className="relative overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900 p-3">
+          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-brand/20 via-transparent to-violet-400/10 blur-2xl" />
+          <div className="relative overflow-hidden rounded-3xl border bg-card p-3">
             <Image
               src="/about_my_photo.png"
               alt="Frontend / Hybrid Client Engineer 서원호"
@@ -128,10 +128,10 @@ export default function AboutPage() {
               className="aspect-square w-full rounded-2xl object-cover"
             />
             <div className="p-5">
-              <p className="font-display text-xl font-semibold text-white">
+              <p className="font-display text-xl font-semibold text-foreground">
                 Wonho Seo
               </p>
-              <p className="mt-1 text-sm text-neutral-400">
+              <p className="mt-1 text-sm text-foreground-subtle">
                 Frontend / Hybrid Client Engineer
               </p>
             </div>
@@ -141,12 +141,12 @@ export default function AboutPage() {
 
       <section aria-labelledby="principles" className="mt-24">
         <AnimatedSection>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">
             Engineering principles
           </p>
           <h2
             id="principles"
-            className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl"
+            className="mt-3 font-display text-3xl font-bold text-foreground sm:text-4xl"
           >
             제가 문제를 푸는 방식
           </h2>
@@ -156,13 +156,13 @@ export default function AboutPage() {
             <AnimatedSection
               key={title}
               delay={`${index * 70}ms`}
-              className="rounded-2xl border border-neutral-800 bg-neutral-900/65 p-6 sm:p-7"
+              className="rounded-2xl border bg-card/65 p-6 sm:p-7"
             >
-              <Icon className="h-6 w-6 text-sky-300" aria-hidden="true" />
-              <h3 className="mt-5 font-display text-xl font-semibold text-white">
+              <Icon className="h-6 w-6 text-brand" aria-hidden="true" />
+              <h3 className="mt-5 font-display text-xl font-semibold text-foreground">
                 {title}
               </h3>
-              <p className="mt-3 text-sm leading-7 text-neutral-400">
+              <p className="mt-3 text-sm leading-7 text-foreground-subtle">
                 {description}
               </p>
             </AnimatedSection>
@@ -172,43 +172,43 @@ export default function AboutPage() {
 
       <section
         aria-labelledby="career"
-        className="mt-24 grid gap-10 border-y border-neutral-800 py-14 lg:grid-cols-[0.7fr_1.3fr]"
+        className="mt-24 grid gap-10 border-y py-14 lg:grid-cols-[0.7fr_1.3fr]"
       >
         <AnimatedSection>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">
             Experience
           </p>
           <h2
             id="career"
-            className="mt-3 font-display text-3xl font-bold text-white"
+            className="mt-3 font-display text-3xl font-bold text-foreground"
           >
             네오랩컨버전스
           </h2>
-          <p className="mt-2 text-neutral-400">책임연구원 · 2021.11 — 현재</p>
+          <p className="mt-2 text-foreground-subtle">책임연구원 · 2021.11 — 현재</p>
         </AnimatedSection>
 
         <AnimatedSection delay="80ms">
-          <ul className="space-y-4 text-sm leading-7 text-neutral-300 sm:text-base">
-            <li className="border-l border-sky-400/40 pl-5">
+          <ul className="space-y-4 text-sm leading-7 text-foreground-muted sm:text-base">
+            <li className="border-l border-brand/40 pl-5">
               React와 .NET MAUI 기반 하이브리드 문서 앱 NeoStudio2에서 사용자가
               작성한 문서의 오프라인 동기화, 웹과 네이티브 연동, 플랫폼별
               호환성을 개선했습니다.
             </li>
-            <li className="border-l border-sky-400/40 pl-5">
+            <li className="border-l border-brand/40 pl-5">
               문서 제작·출력 도구 CasterN에서 WebAssembly PDF 엔진과 수 GB
               규모 문서의 저장, 전송, 출력, 패키징 경로를 구현하고 실제
               환경에서 검증했습니다.
             </li>
-            <li className="border-l border-sky-400/40 pl-5">
+            <li className="border-l border-brand/40 pl-5">
               실시간 협업 서비스 NeoCAST를 프로토타입 단계에서 이어받아 세션
               관리, 실시간 자막과 아카이브 분석, 브라우저에서 네이티브 앱으로
               이어지는 인쇄 흐름까지 프론트엔드와 서버 전반을 개발했습니다.
             </li>
-            <li className="border-l border-sky-400/40 pl-5">
+            <li className="border-l border-brand/40 pl-5">
               브라우저용 스마트펜 Web SDK에서 여러 펜의 연결 상태 처리를
               맡고, 공개 API와 타입, 샘플, 문서를 함께 관리하고 있습니다.
             </li>
-            <li className="border-l border-sky-400/40 pl-5">
+            <li className="border-l border-brand/40 pl-5">
               입사 초기에는 드로잉 보드 제품 그리다보드의 펜 연동 기능 개선에
               참여했습니다.
             </li>
@@ -218,23 +218,23 @@ export default function AboutPage() {
 
       <section aria-labelledby="skills" className="mt-24">
         <AnimatedSection>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">
             Technical scope
           </p>
           <h2
             id="skills"
-            className="mt-3 font-display text-3xl font-bold text-white sm:text-4xl"
+            className="mt-3 font-display text-3xl font-bold text-foreground sm:text-4xl"
           >
             실무에서 활용해 온 기술
           </h2>
         </AnimatedSection>
-        <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-800 md:grid-cols-2">
+        <dl className="mt-8 grid gap-px overflow-hidden rounded-2xl border bg-border md:grid-cols-2">
           {skillGroups.map((group) => (
-            <div key={group.title} className="bg-neutral-950 p-6">
-              <dt className="font-display text-lg font-semibold text-white">
+            <div key={group.title} className="bg-background p-6">
+              <dt className="font-display text-lg font-semibold text-foreground">
                 {group.title}
               </dt>
-              <dd className="mt-2 text-sm leading-7 text-neutral-400">
+              <dd className="mt-2 text-sm leading-7 text-foreground-subtle">
                 {group.description}
               </dd>
             </div>

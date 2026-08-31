@@ -75,23 +75,23 @@ const skills = [
 export default function ResumePage() {
   return (
     <main className="mx-auto w-full max-w-6xl px-5 pb-24 pt-14 sm:px-8 lg:px-10">
-      <header className="grid gap-10 border-b border-neutral-800 pb-12 lg:grid-cols-[1fr_auto] lg:items-end">
+      <header className="grid gap-10 border-b pb-12 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand">
             Resume
           </p>
-          <h1 className="mt-4 font-display text-5xl font-bold tracking-tight text-white sm:text-6xl">
-            서원호 <span className="text-neutral-500">Wonho Seo</span>
+          <h1 className="mt-4 font-display text-5xl font-bold tracking-tight text-foreground sm:text-6xl">
+            서원호 <span className="text-foreground-subtle">Wonho Seo</span>
           </h1>
-          <p className="mt-5 text-xl text-neutral-200">
+          <p className="mt-5 text-xl text-foreground-soft">
             Frontend / Hybrid Client Engineer
           </p>
-          <p className="mt-5 max-w-3xl text-base leading-8 text-neutral-400">
+          <p className="mt-5 max-w-3xl text-base leading-8 text-foreground-subtle">
             웹과 네이티브의 경계에서 데이터와 문서가 끝까지 안전하게 흐르도록
             만듭니다. 실무에서 오프라인 동기화, 대용량 PDF, 실시간 협업·음성
             처리와 BLE 펜 연동을 구현하고 여러 플랫폼에서 검증해 왔습니다.
           </p>
-          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-neutral-400">
+          <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-foreground-subtle">
             <span className="inline-flex items-center gap-2">
               <MapPin className="h-4 w-4" aria-hidden="true" /> 대한민국
             </span>
@@ -101,7 +101,7 @@ export default function ResumePage() {
             </span>
           </div>
         </div>
-        <Button asChild className="bg-sky-400 text-neutral-950 hover:bg-sky-300">
+        <Button asChild className="bg-primary text-primary-foreground hover:bg-primary-hover">
           <a href="mailto:swh1182@gmail.com">
             <Mail aria-hidden="true" /> 이메일로 연락하기
           </a>
@@ -113,17 +113,17 @@ export default function ResumePage() {
           <section aria-labelledby="experience-heading">
             <h2
               id="experience-heading"
-              className="font-display text-xl font-semibold text-white"
+              className="font-display text-xl font-semibold text-foreground"
             >
               Experience
             </h2>
-            <div className="mt-5 border-l border-sky-400/30 pl-5">
-              <p className="text-sm text-sky-300">2021.11 — 현재</p>
-              <h3 className="mt-2 font-display text-lg font-semibold text-white">
+            <div className="mt-5 border-l border-brand/30 pl-5">
+              <p className="text-sm text-brand">2021.11 — 현재</p>
+              <h3 className="mt-2 font-display text-lg font-semibold text-foreground">
                 네오랩컨버전스
               </h3>
-              <p className="mt-1 text-sm text-neutral-400">책임연구원</p>
-              <p className="mt-4 text-sm leading-7 text-neutral-400">
+              <p className="mt-1 text-sm text-foreground-subtle">책임연구원</p>
+              <p className="mt-4 text-sm leading-7 text-foreground-subtle">
                 React 기반 웹 서비스와 .NET MAUI 하이브리드 앱, 문서 엔진과 SDK의
                 프론트엔드와 클라이언트 개발을 담당합니다.
               </p>
@@ -133,17 +133,17 @@ export default function ResumePage() {
           <section aria-labelledby="skills-heading">
             <h2
               id="skills-heading"
-              className="font-display text-xl font-semibold text-white"
+              className="font-display text-xl font-semibold text-foreground"
             >
               Technical scope
             </h2>
             <dl className="mt-5 space-y-5">
               {skills.map((skill) => (
                 <div key={skill.label}>
-                  <dt className="text-sm font-medium text-neutral-200">
+                  <dt className="text-sm font-medium text-foreground-soft">
                     {skill.label}
                   </dt>
-                  <dd className="mt-1 text-sm leading-6 text-neutral-400">
+                  <dd className="mt-1 text-sm leading-6 text-foreground-subtle">
                     {skill.items}
                   </dd>
                 </div>
@@ -153,12 +153,12 @@ export default function ResumePage() {
         </aside>
 
         <section aria-labelledby="impact-heading">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neutral-400">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-foreground-subtle">
             Selected impact
           </p>
           <h2
             id="impact-heading"
-            className="mt-2 font-display text-3xl font-semibold text-white"
+            className="mt-2 font-display text-3xl font-semibold text-foreground"
           >
             직접 맡아 해결한 주요 문제
           </h2>
@@ -167,23 +167,23 @@ export default function ResumePage() {
             {achievements.map((achievement) => (
               <li
                 key={achievement.title}
-                className="rounded-2xl border border-neutral-800 bg-neutral-900/65 p-6"
+                className="rounded-2xl border bg-card/65 p-6"
               >
                 <div className="flex gap-3">
                   <CheckCircle2
-                    className="mt-1 h-5 w-5 shrink-0 text-sky-300"
+                    className="mt-1 h-5 w-5 shrink-0 text-brand"
                     aria-hidden="true"
                   />
                   <div>
-                    <h3 className="font-display text-lg font-semibold text-white">
+                    <h3 className="font-display text-lg font-semibold text-foreground">
                       {achievement.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-7 text-neutral-400">
+                    <p className="mt-2 text-sm leading-7 text-foreground-subtle">
                       {achievement.detail}
                     </p>
                     <Link
                       href={achievement.href}
-                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-sky-300 hover:text-sky-200"
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-brand hover:text-brand-hover"
                     >
                       구현 사례 보기 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                     </Link>

@@ -24,14 +24,14 @@ export default function ProjectsPage() {
   return (
     <main className="mx-auto w-full max-w-7xl break-keep px-5 pb-24 pt-14 sm:px-8 lg:px-10">
       <AnimatedSection className="mb-16 max-w-4xl">
-        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-sky-300">
+        <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-brand">
           Projects
         </p>
-        <h1 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        <h1 className="font-display text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
           웹 서비스와 하이브리드 앱에서
           <br className="hidden sm:block" /> 맡아 온 프로젝트
         </h1>
-        <p className="mt-6 max-w-3xl text-base leading-8 text-neutral-300 sm:text-lg">
+        <p className="mt-6 max-w-3xl text-base leading-8 text-foreground-muted sm:text-lg">
           회사에서 개발한 프로젝트와 개인적으로 만든 프로젝트를 함께
           정리했습니다. 각 프로젝트에서 맡은 기능과 해결한 문제를 자세히 볼 수
           있습니다.
@@ -40,17 +40,17 @@ export default function ProjectsPage() {
 
       <section aria-labelledby="company-projects" className="mb-20">
         <div className="mb-8 flex items-center gap-3">
-          <span className="rounded-lg border border-sky-400/20 bg-sky-400/10 p-2 text-sky-300">
+          <span className="rounded-lg border border-brand/20 bg-brand/10 p-2 text-brand">
             <Building2 className="h-5 w-5" aria-hidden="true" />
           </span>
           <div>
             <h2
               id="company-projects"
-              className="font-display text-2xl font-semibold text-white"
+              className="font-display text-2xl font-semibold text-foreground"
             >
               Company projects
             </h2>
-            <p className="mt-1 text-sm text-neutral-400">
+            <p className="mt-1 text-sm text-foreground-subtle">
               회사에서 맡은 주요 프로젝트
             </p>
           </div>
@@ -64,17 +64,17 @@ export default function ProjectsPage() {
 
       <section aria-labelledby="personal-projects">
         <div className="mb-8 flex items-center gap-3">
-          <span className="rounded-lg border border-emerald-400/20 bg-emerald-400/10 p-2 text-emerald-300">
+          <span className="rounded-lg border border-success/20 bg-success/10 p-2 text-success">
             <UserRound className="h-5 w-5" aria-hidden="true" />
           </span>
           <div>
             <h2
               id="personal-projects"
-              className="font-display text-2xl font-semibold text-white"
+              className="font-display text-2xl font-semibold text-foreground"
             >
               Personal projects
             </h2>
-            <p className="mt-1 text-sm text-neutral-400">
+            <p className="mt-1 text-sm text-foreground-subtle">
               개인적으로 기획하고 개발한 프로젝트
             </p>
           </div>

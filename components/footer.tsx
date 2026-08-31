@@ -8,10 +8,10 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-neutral-800/70 px-5 py-8 sm:px-8">
-      <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 text-sm text-neutral-400 sm:flex-row sm:items-center">
+    <footer className="border-t border-border/70 px-5 py-8 sm:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 text-sm text-foreground-subtle sm:flex-row sm:items-center">
         <div>
-          <p className="font-display font-medium text-neutral-300">Wonho Seo</p>
+          <p className="font-display font-medium text-foreground-muted">Wonho Seo</p>
           <p className="mt-1">Frontend / Hybrid Client Engineer</p>
         </div>
         <nav aria-label="하단 메뉴" className="flex flex-wrap gap-x-5 gap-y-2">
@@ -19,7 +19,7 @@ export default function Footer() {
             <Link
               key={link.href}
               href={link.href}
-              className="transition-colors hover:text-sky-300"
+              className="transition-colors hover:text-brand"
             >
               {link.label}
             </Link>

@@ -67,18 +67,18 @@ export default function Portfolio() {
         <section className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-7xl flex-col justify-center px-5 py-16 sm:px-8 lg:px-10">
           <AnimatedSection className="max-w-5xl" animationType="fadeInUp">
             <div className="mb-7 flex items-center gap-3">
-              <span className="h-px w-8 bg-sky-400" aria-hidden="true" />
-              <p className="font-display text-sm font-medium uppercase tracking-[0.18em] text-sky-300">
+              <span className="h-px w-8 bg-primary" aria-hidden="true" />
+              <p className="font-display text-sm font-medium uppercase tracking-[0.18em] text-brand">
                 Frontend / Hybrid Client Engineer
               </p>
             </div>
 
-            <h1 className="text-balance font-display text-5xl font-bold leading-[1.02] tracking-tight text-white sm:text-7xl lg:text-[5.6rem]">
+            <h1 className="text-balance font-display text-5xl font-bold leading-[1.02] tracking-tight text-foreground sm:text-7xl lg:text-[5.6rem]">
               데이터와 문서가
               <br />끝까지 안전하게 흐르도록.
             </h1>
 
-            <p className="mt-7 max-w-3xl text-base leading-8 text-neutral-300 sm:text-xl sm:leading-9">
+            <p className="mt-7 max-w-3xl text-base leading-8 text-foreground-muted sm:text-xl sm:leading-9">
               React와 .NET MAUI로 웹 서비스와 하이브리드 앱을 개발하며 오프라인
               동기화, 대용량 PDF 처리, 실시간 협업, 음성 처리, BLE 펜 연동을 구현해
               온 서원호입니다.
@@ -89,7 +89,7 @@ export default function Portfolio() {
                 <Badge
                   key={tech}
                   variant="outline"
-                  className="border-neutral-700 bg-neutral-900/70 px-3 py-1 text-neutral-300"
+                  className="border-input bg-card/70 px-3 py-1 text-foreground-muted"
                 >
                   {tech}
                 </Badge>
@@ -100,7 +100,7 @@ export default function Portfolio() {
               <Button
                 asChild
                 size="lg"
-                className="bg-sky-400 text-neutral-950 hover:bg-sky-300"
+                className="bg-primary text-primary-foreground hover:bg-primary-hover"
               >
                 <Link href="/projects">
                   프로젝트 사례 보기 <ArrowRight aria-hidden="true" />
@@ -110,7 +110,7 @@ export default function Portfolio() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-neutral-700 bg-neutral-950/60 text-neutral-200 hover:bg-neutral-800 hover:text-white"
+                className="border-input bg-background/60 text-foreground-soft hover:bg-muted hover:text-foreground"
               >
                 <Link href="/resume">경력 요약 보기</Link>
               </Button>
@@ -118,11 +118,11 @@ export default function Portfolio() {
           </AnimatedSection>
 
           <AnimatedSection className="mt-14" delay="120ms">
-            <dl className="grid gap-px overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-800 sm:grid-cols-2 lg:grid-cols-4">
+            <dl className="grid gap-px overflow-hidden rounded-2xl border bg-border sm:grid-cols-2 lg:grid-cols-4">
               {highlights.map((item) => (
-                <div key={item.label} className="bg-neutral-950/90 p-5 sm:p-6">
-                  <dt className="text-xs leading-5 text-neutral-400">{item.label}</dt>
-                  <dd className="mt-1 font-display text-lg font-semibold text-white">
+                <div key={item.label} className="bg-background/90 p-5 sm:p-6">
+                  <dt className="text-xs leading-5 text-foreground-subtle">{item.label}</dt>
+                  <dd className="mt-1 font-display text-lg font-semibold text-foreground">
                     {item.value}
                   </dd>
                 </div>
@@ -131,20 +131,20 @@ export default function Portfolio() {
           </AnimatedSection>
         </section>
 
-        <section className="border-y border-neutral-800/80 bg-neutral-950/80">
+        <section className="border-y border-border/80 bg-background/80">
           <div className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-8 lg:px-10">
             <AnimatedSection className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
               <div>
-                <div className="mb-4 flex items-center gap-2 text-sky-300">
+                <div className="mb-4 flex items-center gap-2 text-brand">
                   <Layers3 className="h-5 w-5" aria-hidden="true" />
                   <p className="text-sm font-semibold uppercase tracking-[0.18em]">
                     주요 작업
                   </p>
                 </div>
-                <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">
+                <h2 className="font-display text-3xl font-bold leading-tight text-foreground sm:text-4xl">
                   실무에서 다음 문제를 주로 다뤘습니다.
                 </h2>
-                <p className="mt-5 text-base leading-7 text-neutral-400">
+                <p className="mt-5 text-base leading-7 text-foreground-subtle">
                   데이터 중복, 문서 전송 실패, 세션 끊김처럼 실제 사용 환경에서
                   발생한 문제를 재현해 수정하고, 관련 사용자 흐름을 회귀 테스트와
                   실기 검증으로 처음부터 끝까지 확인했습니다.
@@ -156,13 +156,13 @@ export default function Portfolio() {
                   <AnimatedSection
                     key={title}
                     delay={`${index * 80}ms`}
-                    className="rounded-2xl border border-neutral-800 bg-neutral-900/75 p-6"
+                    className="rounded-2xl border bg-card/75 p-6"
                   >
-                    <Icon className="h-6 w-6 text-sky-300" aria-hidden="true" />
-                    <h3 className="mt-5 font-display text-lg font-semibold text-white">
+                    <Icon className="h-6 w-6 text-brand" aria-hidden="true" />
+                    <h3 className="mt-5 font-display text-lg font-semibold text-foreground">
                       {title}
                     </h3>
-                    <p className="mt-3 text-sm leading-6 text-neutral-400">
+                    <p className="mt-3 text-sm leading-6 text-foreground-subtle">
                       {description}
                     </p>
                   </AnimatedSection>
@@ -173,17 +173,17 @@ export default function Portfolio() {
         </section>
 
         <section className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-8 lg:px-10">
-          <AnimatedSection className="rounded-3xl border border-sky-400/20 bg-gradient-to-br from-sky-400/10 via-neutral-900 to-neutral-950 p-7 sm:p-10">
+          <AnimatedSection className="rounded-3xl border border-brand/20 bg-gradient-to-br from-brand/10 via-card to-background p-7 sm:p-10">
             <div className="flex flex-col justify-between gap-8 md:flex-row md:items-center">
               <div className="max-w-2xl">
-                <div className="flex items-center gap-2 text-sky-300">
+                <div className="flex items-center gap-2 text-brand">
                   <ShieldCheck className="h-5 w-5" aria-hidden="true" />
                   <p className="text-sm font-semibold">경력과 프로젝트</p>
                 </div>
-                <h2 className="mt-4 font-display text-2xl font-semibold text-white sm:text-3xl">
+                <h2 className="mt-4 font-display text-2xl font-semibold text-foreground sm:text-3xl">
                   그동안 맡아 온 주요 프로젝트를 정리했습니다.
                 </h2>
-                <p className="mt-4 text-sm leading-7 text-neutral-400 sm:text-base">
+                <p className="mt-4 text-sm leading-7 text-foreground-subtle sm:text-base">
                   하이브리드 앱 NeoStudio2와 스마트펜 Web SDK, 문서 제작·출력 도구
                   CasterN, 실시간 협업 서비스 NeoCAST를 개발하며 맡은 역할과
                   해결한 문제를 프로젝트별로 소개합니다.
@@ -193,7 +193,7 @@ export default function Portfolio() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="shrink-0 border-sky-300/30 bg-transparent text-sky-100 hover:bg-sky-300 hover:text-neutral-950"
+                className="shrink-0 border-brand/30 bg-transparent text-brand hover:bg-primary hover:text-primary-foreground"
               >
                 <Link href="/about">경험과 작업 방식 보기</Link>
               </Button>

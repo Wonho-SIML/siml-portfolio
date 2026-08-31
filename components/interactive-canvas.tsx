@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 
 const GRID_SPACING = 32;
 const DOT_BASE_RADIUS = 1.4;
@@ -8,6 +9,12 @@ const DOT_MAX_RADIUS = 3.8;
 const POINTER_RADIUS = 150;
 const BASE_ALPHA = 0.06;
 const MAX_DPR = 2;
+
+// 점 색상은 테마별로 배경과 대비되는 값을 쓴다(휴지 상태 → 포인터 근접 상태).
+const DOT_COLORS = {
+  dark: { base: [255, 255, 255], active: [56, 189, 248] },
+  light: { base: [10, 10, 10], active: [3, 105, 161] },
+} as const;
 
 interface Dot {
   x: number;
@@ -18,11 +25,17 @@ interface Dot {
 
 export default function InteractiveCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { resolvedTheme } = useTheme();
 
+  // 테마가 바뀌면 effect가 다시 실행되어 새 색상으로 전체를 다시 그린다.
+  // resolvedTheme는 서버 렌더에서만 undefined이므로 다크 폴백은 타입 방어용이다.
   useEffect(() => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext("2d");
     if (!canvas || !context) return;
+
+    const { base, active } =
+      DOT_COLORS[resolvedTheme === "light" ? "light" : "dark"];
 
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
@@ -86,9 +99,9 @@ export default function InteractiveCanvas() {
           0,
           Math.min(1, (dot.alpha - BASE_ALPHA) / (0.55 - BASE_ALPHA))
         );
-        const red = Math.round(255 + (56 - 255) * colorMix);
-        const green = Math.round(255 + (189 - 255) * colorMix);
-        const blue = Math.round(255 + (248 - 255) * colorMix);
+        const red = Math.round(base[0] + (active[0] - base[0]) * colorMix);
+        const green = Math.round(base[1] + (active[1] - base[1]) * colorMix);
+        const blue = Math.round(base[2] + (active[2] - base[2]) * colorMix);
 
         context.beginPath();
         context.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
@@ -157,7 +170,7 @@ export default function InteractiveCanvas() {
       window.removeEventListener("resize", handleResize);
       document.removeEventListener("visibilitychange", handleVisibility);
     };
-  }, []);
+  }, [resolvedTheme]);
 
   return (
     <canvas
